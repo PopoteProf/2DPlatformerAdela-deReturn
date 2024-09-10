@@ -94,8 +94,11 @@ public class PlayerController2D : MonoBehaviour, IDamagable
     public void ManagerAttack() {
         _timer += Time.deltaTime;
         if (_timer >= _attackDamageDelay && !_hadAttack) {
-            if (_flip) _attackZoneLeft.enabled = true;
-            else _attackZoneRight.enabled = true;
+            if (_diplayDebugGizmos) {
+                if (_flip) _attackZoneLeft.enabled = true;
+                else _attackZoneRight.enabled = true;
+            }
+
             DoAttackDamage();
             _hadAttack = true;
         }

@@ -142,8 +142,10 @@ public class Monster : MonoBehaviour , IDamagable
     private void ManagerAttack() {
         _timer += Time.deltaTime;
         if (_timer >= _attackDamageDelay && !_hadAttack) {
-            if (_flip) _leftTriggerZone.enabled = true;
-            else _rightTriggerZonne.enabled = true;
+            if (_diplayDebugGizmos) {
+                if (_flip) _leftTriggerZone.enabled = true;
+                else _rightTriggerZonne.enabled = true;
+            }
             DoAttackDamage();
             _hadAttack = true;
         }
@@ -218,7 +220,7 @@ public class Monster : MonoBehaviour , IDamagable
         _monsterStat = MonsterStat.damaged;
         
         _hp--;
-        if (_hp == 0) {
+        if (_hp <= 0) {
             if (_animator)_animator.SetBool("Dead", true);
             if (_animator)_animator.SetBool("IsDamaged", false);
             this.enabled = false;
