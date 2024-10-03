@@ -64,7 +64,7 @@ public class PlayerController2D : MonoBehaviour, IDamagable
     }
 
     private void CheckFlip() {
-        if( _spriteIsFlip){
+        if( !_spriteIsFlip){
             
             if (_velocity.x < -0.1f) _flip = true;
             if (_velocity.x > 0.1f) _flip = false;
