@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: c2fa69c311e8ddd40805d213dfb292f8
+guid: 18c05723892614244acdc02567978dac
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -34,7 +34,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 0
+    filterMode: 1
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -48,7 +48,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 32
+  spritePixelsToUnits: 130
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -69,19 +69,6 @@ TextureImporter:
   platformSettings:
   - serializedVersion: 3
     buildTarget: DefaultTexturePlatform
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 0
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    ignorePlatformSupport: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 3
-    buildTarget: WebGL
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
@@ -107,11 +94,11 @@ TextureImporter:
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
-    buildTarget: Server
+    buildTarget: WebGL
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 0
+    textureCompression: 1
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -123,64 +110,85 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Jump_0
+      name: Damaged_0
       rect:
         serializedVersion: 2
         x: 0
-        y: 0
-        width: 140
-        height: 140
+        y: 105
+        width: 288
+        height: 483
       alignment: 9
-      pivot: {x: 0.5, y: 0.31}
+      pivot: {x: 0.50763744, y: 0.053705916}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 3f49c7bb6d004cc45a3cf1daaf079f4a
-      internalID: 1124959474
+      spriteID: c42203c51f5ae114d9897d64ee7b5bcd
+      internalID: -272506198
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Jump_1
+      name: Damaged_1
       rect:
         serializedVersion: 2
-        x: 140
-        y: 0
-        width: 140
-        height: 140
+        x: 288
+        y: 124
+        width: 288
+        height: 458
       alignment: 9
-      pivot: {x: 0.5, y: 0.31}
+      pivot: {x: 0.48981667, y: 0.09177865}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 41dc88486fc0a45498a9789b03e35bb3
-      internalID: -1607199401
+      spriteID: 519aec967eda5ea4c934d9bb7788f16c
+      internalID: 2065557645
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Jump_2
+      name: Damaged_2
       rect:
         serializedVersion: 2
-        x: 280
-        y: 0
-        width: 140
-        height: 140
+        x: 577
+        y: 152
+        width: 288
+        height: 395
       alignment: 9
-      pivot: {x: 0.5, y: 0.31}
+      pivot: {x: 0.39307532, y: 0.056369174}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 7f701a52b0e269c47b955a413fb2f170
-      internalID: -1608376520
+      spriteID: f4b47619205553043af9474333d8dcab
+      internalID: 1920872933
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Damaged_3
+      rect:
+        serializedVersion: 2
+        x: 843
+        y: 153
+        width: 287
+        height: 429
+      alignment: 9
+      pivot: {x: 0.48495495, y: 0.018037952}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cac91f9bc5c1a8444b780a270a7c8b3d
+      internalID: -1903002268
       vertices: []
       indices: 
       edges: []
@@ -196,9 +204,10 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Jump_0: 1124959474
-      Jump_1: -1607199401
-      Jump_2: -1608376520
+      Damaged_0: -272506198
+      Damaged_1: 2065557645
+      Damaged_2: 1920872933
+      Damaged_3: -1903002268
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

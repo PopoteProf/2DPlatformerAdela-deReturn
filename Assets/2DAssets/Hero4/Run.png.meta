@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: c2fa69c311e8ddd40805d213dfb292f8
+guid: 3d0507ee4b3971d47b86170ffc10137e
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -34,7 +34,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 0
+    filterMode: 1
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -48,7 +48,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 32
+  spritePixelsToUnits: 120
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -69,19 +69,6 @@ TextureImporter:
   platformSettings:
   - serializedVersion: 3
     buildTarget: DefaultTexturePlatform
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 0
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    ignorePlatformSupport: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 3
-    buildTarget: WebGL
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
@@ -107,11 +94,11 @@ TextureImporter:
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
-    buildTarget: Server
+    buildTarget: WebGL
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 0
+    textureCompression: 1
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -123,64 +110,85 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Jump_0
+      name: Run_0
       rect:
         serializedVersion: 2
         x: 0
-        y: 0
-        width: 140
-        height: 140
+        y: 254
+        width: 288
+        height: 291
       alignment: 9
-      pivot: {x: 0.5, y: 0.31}
+      pivot: {x: 0.4490834, y: 0.031801622}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 3f49c7bb6d004cc45a3cf1daaf079f4a
-      internalID: 1124959474
+      spriteID: 4093e11da6846494eae0df3b1f8ccf0b
+      internalID: -331368519
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Jump_1
+      name: Run_1
       rect:
         serializedVersion: 2
-        x: 140
-        y: 0
-        width: 140
-        height: 140
+        x: 288
+        y: 236
+        width: 288
+        height: 288
       alignment: 9
-      pivot: {x: 0.5, y: 0.31}
+      pivot: {x: 0.4261709, y: 0.047126133}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 41dc88486fc0a45498a9789b03e35bb3
-      internalID: -1607199401
+      spriteID: 182316afc32a66141bd030850176943a
+      internalID: 2051282124
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Jump_2
+      name: Run_2
       rect:
         serializedVersion: 2
-        x: 280
-        y: 0
-        width: 140
-        height: 140
+        x: 576
+        y: 236
+        width: 288
+        height: 305
       alignment: 9
-      pivot: {x: 0.5, y: 0.31}
+      pivot: {x: 0.3319751, y: 0.055392254}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 7f701a52b0e269c47b955a413fb2f170
-      internalID: -1608376520
+      spriteID: 29e7f748b60e9c04d9f257821c649886
+      internalID: -694304751
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Run_3
+      rect:
+        serializedVersion: 2
+        x: 823
+        y: 250
+        width: 288
+        height: 276
+      alignment: 9
+      pivot: {x: 0.44399112, y: 0.058772985}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 478500a7a8708a545b840fc0f84648b7
+      internalID: -1465947960
       vertices: []
       indices: 
       edges: []
@@ -196,9 +204,10 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Jump_0: 1124959474
-      Jump_1: -1607199401
-      Jump_2: -1608376520
+      Run_0: -331368519
+      Run_1: 2051282124
+      Run_2: -694304751
+      Run_3: -1465947960
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
