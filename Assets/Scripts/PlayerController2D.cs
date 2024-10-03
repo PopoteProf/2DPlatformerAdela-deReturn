@@ -20,6 +20,7 @@ public class PlayerController2D : MonoBehaviour, IDamagable
     [SerializeField] private float _damagedTime = 1;
     [SerializeField] private Animator _animator;
     [SerializeField] private SpriteRenderer _spriterendere;
+    [SerializeField] private bool _spriteIsFlip;
 
     [Space(5), Header("Attack Parameters"), SerializeField]
     private float _attackTime=0.8f;
@@ -63,8 +64,15 @@ public class PlayerController2D : MonoBehaviour, IDamagable
     }
 
     private void CheckFlip() {
-        if (_velocity.x < -0.1f) _flip = true;
-        if (_velocity.x > 0.1f) _flip = false;
+        if( _spriteIsFlip){
+            
+            if (_velocity.x < -0.1f) _flip = true;
+            if (_velocity.x > 0.1f) _flip = false;
+        }
+        else {
+            if (_velocity.x < -0.1f) _flip = false;
+            if (_velocity.x > 0.1f) _flip = true; 
+        }
     }
 
     private void ManagerMove() {
