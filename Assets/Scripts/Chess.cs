@@ -7,6 +7,7 @@ public class Chess : MonoBehaviour
 {
     [SerializeField] private Animator _animator;
     [SerializeField] private bool _isOpen;
+    [SerializeField] private bool _close;
 
     public void OpenChess() {
         _animator.SetBool("Open", true);

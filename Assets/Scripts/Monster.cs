@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class Monster : MonoBehaviour , IDamagable
 {
-
+    [SerializeField] private CapsuleCollider2D capsuleCollider;
     [SerializeField] private MonsterStat _monsterStat;
     [SerializeField] private Rigidbody2D _rigidbody;
     [SerializeField] private SpriteRenderer _spriteRenderer;
@@ -224,6 +224,8 @@ public class Monster : MonoBehaviour , IDamagable
             if (_animator)_animator.SetBool("Dead", true);
             if (_animator)_animator.SetBool("IsDamaged", false);
             this.enabled = false;
+            capsuleCollider.enabled = false;
+            Destroy(gameObject, 3);
         }
         
     }
