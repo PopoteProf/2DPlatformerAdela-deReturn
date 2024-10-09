@@ -1,8 +1,4 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
-using Cainos.LucidEditor;
-using UnityEditor.UIElements;
 using UnityEngine;
 
 public class PlayerController2D : MonoBehaviour, IDamagable
@@ -27,16 +23,24 @@ public class PlayerController2D : MonoBehaviour, IDamagable
     [SerializeField]private float _attackDamageDelay = 0.4f;
     [SerializeField]    private SpriteRenderer _attackZoneLeft, _attackZoneRight;
 
-    public Chess Chess;
+    [Header("Particules")]
+    [SerializeField] private ParticleSystem _psWalk;
+    [SerializeField] private ParticleSystem _PSDashRight;
+    [SerializeField] private ParticleSystem _pSDashLeft;
+    [SerializeField] private ParticleSystem _pSJump;
+    [SerializeField] private ParticleSystem _pSLanding;
+    [SerializeField] private ParticleSystem _pSHit;
+    [NonSerialized]public Chess Chess;
 
 
     private float _timer;
     private bool _isDamaged;
     private bool _isAttacking;
     private bool _hadAttack;
+    private bool _isWalking;
     private Vector3 _velocity;
     private bool _flip;
-    [ShowInInspector]private bool _isGrounded;
+    private bool _isGrounded;
     
     void Update() {
         if (_isDamaged) {
@@ -59,8 +63,10 @@ public class PlayerController2D : MonoBehaviour, IDamagable
     }
 
     private void CheckIfGrounded() {
-        _isGrounded = Physics2D.Raycast(transform.position, Vector3.down , _groundDetectionLength, _groundMask);
-        if (_animator)_animator.SetBool("IsGrounded", _isGrounded);
+        bool isGrounded = Physics2D.Raycast(transform.position, Vector3.down , _groundDetectionLength, _groundMask);
+        if (_animator)_animator.SetBool("IsGrounded", isGrounded);
+        if( _isGrounded==false && isGrounded&&_pSLanding!=null) _pSLanding.Play();
+        _isGrounded = isGrounded;
     }
 
     private void CheckFlip()
@@ -77,15 +83,32 @@ public class PlayerController2D : MonoBehaviour, IDamagable
 
     private void ManagerMove() {
         _velocity = _rigidbody.velocity;
-        //_velocity.x = Mathf.Clamp(_velocity.x+ Input.GetAxisRaw("Horizontal") * _moveSpeedPower, -_moveSpeedLimite, _moveSpeedLimite);
         _velocity.x = Input.GetAxisRaw("Horizontal") * _moveSpeedPower;
-        if (Input.GetKeyDown(KeyCode.UpArrow)&&_isGrounded) _velocity.y += _jumpPower;
+        if (Input.GetKeyDown(KeyCode.UpArrow) && _isGrounded) {
+            _velocity.y += _jumpPower;
+            if(_pSJump!=null)_pSJump.Play();
+        }
         _rigidbody.velocity = _velocity;
         
         CheckFlip();
+        bool isWalking = _velocity.x > 0.3f || _velocity.x < -0.3f;
         
-        if (_animator)_animator.SetBool("IsWalking",_velocity.x>0.3f||_velocity.x<-0.3f );
+        //Gère l'animator et le flip du sprite lors de la marche.
+        if (_animator)_animator.SetBool("IsWalking",isWalking );
         if (_spriterendere)_spriterendere.flipX = _flip;
+
+        //Gère les particule lors de la marche.
+        if (_psWalk != null) {
+            ParticleSystem.EmissionModule emission = _psWalk.emission;
+            emission.enabled = isWalking&& _isGrounded;
+        }
+
+        if (_isWalking == false && isWalking&&_isGrounded) {
+            if(_velocity.x<0&&_pSDashLeft!=null)_pSDashLeft.Play();
+            if(_velocity.x>0&&_PSDashRight!=null)_PSDashRight.Play();
+        }
+
+        _isWalking = isWalking;
     }
 
     private void ManageIsDamaged() {
@@ -129,6 +152,8 @@ public class PlayerController2D : MonoBehaviour, IDamagable
             if (col.transform.GetComponent<IDamagable>()!=null) {
                 if (col.gameObject == gameObject) return;
                 col.transform.GetComponent<IDamagable>().TakeDamage(1, transform.position);
+
+                if (_pSHit != null) Instantiate(_pSHit, ( col.transform.position) , Quaternion.identity);
             }
         }
     }
