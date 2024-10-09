@@ -11,8 +11,9 @@ public class PlayerController2D : MonoBehaviour, IDamagable
     [SerializeField] private float _moveSpeedPower= 10;
     [SerializeField] private float _jumpPower=10;
     [SerializeField] private Rigidbody2D _rigidbody;
-    
+
     [Space(5)] 
+    [SerializeField] private bool _SpriteIsFlip;
     [SerializeField] private LayerMask _groundMask;
     [SerializeField] private float _groundDetectionLength = 0.75f;
     [Space(5)] [SerializeField] private bool _diplayDebugGizmos;
@@ -62,9 +63,16 @@ public class PlayerController2D : MonoBehaviour, IDamagable
         if (_animator)_animator.SetBool("IsGrounded", _isGrounded);
     }
 
-    private void CheckFlip() {
-        if (_velocity.x < -0.1f) _flip = true;
-        if (_velocity.x > 0.1f) _flip = false;
+    private void CheckFlip()
+    {
+        if (_SpriteIsFlip) {
+            if (_velocity.x < -0.1f) _flip = false;
+            if (_velocity.x > 0.1f) _flip = true;
+        }
+        else{
+            if (_velocity.x < -0.1f) _flip = true;
+            if (_velocity.x > 0.1f) _flip = false;
+        }
     }
 
     private void ManagerMove() {
