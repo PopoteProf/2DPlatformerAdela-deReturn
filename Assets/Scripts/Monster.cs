@@ -29,7 +29,10 @@ public class Monster : MonoBehaviour , IDamagable
     [SerializeField] private float _groundDetectionLength = 0.75f;
     [SerializeField] private Transform _leftDetector, _rightDetectot;
     [SerializeField] private float _detectionDistance = 0.5f;
-    [Space(5),Header("Debug"),SerializeField] private bool _diplayDebugGizmos;
+    [Space(10)] 
+    [SerializeField] private bool _destroyOnDeath;
+    [SerializeField] private GameObject _prefabPSDeath;
+    [Space(10),Header("Debug"),SerializeField] private bool _diplayDebugGizmos;
     [SerializeField] private SpriteRenderer _leftTriggerZone, _rightTriggerZonne;
     [SerializeField] private float _damagedBumpForce = 7;
     
@@ -224,8 +227,15 @@ public class Monster : MonoBehaviour , IDamagable
             if (_animator)_animator.SetBool("Dead", true);
             if (_animator)_animator.SetBool("IsDamaged", false);
             this.enabled = false;
-            capsuleCollider.enabled = false;
-            Destroy(gameObject, 3);
+
+            //capsuleCollider.enabled = false;
+            //Destroy(gameObject, 3);
+
+            if (_destroyOnDeath) {
+                if (_prefabPSDeath != null) Instantiate(_prefabPSDeath, transform.position, Quaternion.identity);
+                Destroy(gameObject);
+            }
+
         }
         
     }
