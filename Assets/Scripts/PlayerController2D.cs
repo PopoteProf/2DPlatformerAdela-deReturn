@@ -1,7 +1,6 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using Cainos.LucidEditor;
 using UnityEditor.UIElements;
 using UnityEngine;
 
@@ -35,8 +34,7 @@ public class PlayerController2D : MonoBehaviour, IDamagable
     private bool _isAttacking;
     private bool _hadAttack;
     private Vector3 _velocity;
-    private bool _flip;
-    [ShowInInspector]private bool _isGrounded;
+    private bool _flip;private bool _isGrounded;
     
     void Update() {
         if (_isDamaged) {
