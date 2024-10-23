@@ -122,6 +122,7 @@ Transform:
   - {fileID: 2050437367437838590}
   - {fileID: 2050437368299358084}
   - {fileID: 2050437367886261816}
+  - {fileID: 5037967181580381281}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &2050437367659002458
@@ -208,6 +209,8 @@ MonoBehaviour:
   _leftDetector: {fileID: 2050437369396025803}
   _rightDetectot: {fileID: 2050437369270413286}
   _detectionDistance: 0.7
+  _destroyOnDeath: 0
+  _prefabPSDeath: {fileID: 0}
   _diplayDebugGizmos: 0
   _leftTriggerZone: {fileID: 2050437367437838591}
   _rightTriggerZonne: {fileID: 2050437368299358085}
@@ -526,3 +529,66 @@ Transform:
   m_Children: []
   m_Father: {fileID: 2050437367659002453}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &5669379043088180402
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5037967181580381281}
+  - component: {fileID: 4310883145682191261}
+  m_Layer: 0
+  m_Name: Audio
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5037967181580381281
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5669379043088180402}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -0.7193415, y: 0.2800696, z: -0.011401813}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2050437367659002453}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4310883145682191261
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5669379043088180402}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5d4c935578c14cee9a3a0a85051bf432, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _monster: {fileID: 2050437367659002459}
+  _attackSound:
+    _minPitch: 1
+    _maxPitch: 1
+    _volume: 0.75
+    _sounds:
+    - {fileID: 8300000, guid: b5a1029d2a5f335408a4cfc3f2b238a7, type: 3}
+  _damagedSound:
+    _minPitch: 1
+    _maxPitch: 1
+    _volume: 0.75
+    _sounds:
+    - {fileID: 8300000, guid: 23c03048ea7909e4ea1904d81861a1d2, type: 3}
+  _DeathSound:
+    _minPitch: 1
+    _maxPitch: 1
+    _volume: 0.75
+    _sounds:
+    - {fileID: 8300000, guid: 9ba5b6fb30c41934e9ce7f61d594b0f6, type: 3}
