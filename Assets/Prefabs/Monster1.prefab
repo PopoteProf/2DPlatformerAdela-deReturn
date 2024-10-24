@@ -97,6 +97,7 @@ GameObject:
   - component: {fileID: 2050437367659002459}
   - component: {fileID: 2050437367659002457}
   - component: {fileID: 2050437367659002452}
+  - component: {fileID: 2579393517498739211}
   m_Layer: 0
   m_Name: Monster1
   m_TagString: Untagged
@@ -276,6 +277,38 @@ CapsuleCollider2D:
   m_Offset: {x: 0, y: 0.04}
   m_Size: {x: 0.7, y: 1.1}
   m_Direction: 0
+--- !u!114 &2579393517498739211
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2050437367659002462}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5d4c935578c14cee9a3a0a85051bf432, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _monster: {fileID: 2050437367659002459}
+  _audioMixerGroup: {fileID: 6391795432820128005, guid: d61dc262f96d56247afe1fe95083b4e2, type: 2}
+  _attackSound:
+    _minPitch: 1
+    _maxPitch: 1
+    _volume: 0.883
+    _sounds:
+    - {fileID: 8300000, guid: b609876ba6b5b3b4ca7271338aa0c51c, type: 3}
+  _damagedSound:
+    _minPitch: 1.27
+    _maxPitch: 1.9
+    _volume: 0.696
+    _sounds:
+    - {fileID: 8300000, guid: da79055cc27a29547b4a6a35deb76776, type: 3}
+  _DeathSound:
+    _minPitch: -0.83
+    _maxPitch: 2.55
+    _volume: 0.861
+    _sounds:
+    - {fileID: 8300000, guid: 027d0df18da67714fb417bc59e99af73, type: 3}
 --- !u!1 &2050437367886261822
 GameObject:
   m_ObjectHideFlags: 0
