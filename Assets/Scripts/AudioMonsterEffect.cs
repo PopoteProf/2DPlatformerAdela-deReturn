@@ -14,9 +14,9 @@ public class AudioMonsterEffect : MonoBehaviour
 
     private void Start()
     {
-        _monster.OnAttack+= MonsterOnOnAttack;
-        _monster.OnDamaged+= MonsterOnOnDamaged;
-        _monster.OnDeath+= MonsterOnOnDeath;
+        // _monster.OnAttack += MonsterOnOnAttack;
+        // _monster.OnDamaged+= MonsterOnOnDamaged;
+        // _monster.OnDeath+= MonsterOnOnDeath;
     }
 
     private void MonsterOnOnDeath(object sender, EventArgs e)
