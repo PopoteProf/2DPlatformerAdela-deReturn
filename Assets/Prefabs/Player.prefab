@@ -476,6 +476,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2186976621478539321}
   - component: {fileID: 7696726906977689187}
+  - component: {fileID: 8679944125041478723}
   m_Layer: 7
   m_Name: AudioPart
   m_TagString: Untagged
@@ -506,6 +507,45 @@ AudioListener:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8226266496030932700}
   m_Enabled: 1
+--- !u!114 &8679944125041478723
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8226266496030932700}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e45c57a8c04149649ace187c97d641d6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _playerController2D: {fileID: 8011071985559387315}
+  _mixerGroup: {fileID: -5428195859748832436, guid: e15e70eed606f124ca274c9637df0357, type: 2}
+  _SFXLanding:
+    _minPitch: 1
+    _maxPitch: 1
+    _volume: 0.75
+    _sounds:
+    - {fileID: 8300000, guid: eaae8fe8d600e1f459f34aa5757fa3b8, type: 3}
+  _SFXJimping:
+    _minPitch: 1
+    _maxPitch: 1
+    _volume: 0.75
+    _sounds:
+    - {fileID: 8300000, guid: 4e349dc959014a845b9aa317d1c2b7f0, type: 3}
+  _SFXAttacking:
+    _minPitch: 1
+    _maxPitch: 1
+    _volume: 0.75
+    _sounds:
+    - {fileID: 8300000, guid: 323e15cfe809e114ab92c9f4b25e8bc2, type: 3}
+  _foodStepDelay: 0.2
+  _SFXFootStep:
+    _minPitch: 1
+    _maxPitch: 1
+    _volume: 0.75
+    _sounds:
+    - {fileID: 8300000, guid: 2352822feb4caa14ebdbc0c713289f8d, type: 3}
 --- !u!1001 &624776987582460706
 PrefabInstance:
   m_ObjectHideFlags: 0
