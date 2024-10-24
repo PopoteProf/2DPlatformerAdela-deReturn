@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class Monster : MonoBehaviour , IDamagable
 {
-    [SerializeField] private CapsuleCollider2D capsuleCollider;
+
     [SerializeField] private MonsterStat _monsterStat;
     [SerializeField] private Rigidbody2D _rigidbody;
     [SerializeField] private SpriteRenderer _spriteRenderer;
@@ -35,7 +35,11 @@ public class Monster : MonoBehaviour , IDamagable
     [Space(10),Header("Debug"),SerializeField] private bool _diplayDebugGizmos;
     [SerializeField] private SpriteRenderer _leftTriggerZone, _rightTriggerZonne;
     [SerializeField] private float _damagedBumpForce = 7;
-    
+
+
+    public event EventHandler OnAttack;
+    public event EventHandler OnDamaged;
+    public event EventHandler OnDeath;
 
     private Vector3 _velocity;
     private bool _isGrounded;
@@ -165,6 +169,7 @@ public class Monster : MonoBehaviour , IDamagable
     }
 
     private void DoAttackDamage() {
+        OnAttack?.Invoke(this , EventArgs.Empty);
         Collider2D[] cols = new Collider2D[0];
         if (_flip) cols =Physics2D.OverlapBoxAll(_leftTriggerZone.transform.position, new Vector2(1,2), 0);
         else cols =Physics2D.OverlapBoxAll(_rightTriggerZonne.transform.position, new Vector2(1,2), 0);
@@ -227,16 +232,17 @@ public class Monster : MonoBehaviour , IDamagable
             if (_animator)_animator.SetBool("Dead", true);
             if (_animator)_animator.SetBool("IsDamaged", false);
             this.enabled = false;
-
-            //capsuleCollider.enabled = false;
-            //Destroy(gameObject, 3);
-
             if (_destroyOnDeath) {
                 if (_prefabPSDeath != null) Instantiate(_prefabPSDeath, transform.position, Quaternion.identity);
                 Destroy(gameObject);
             }
-
+            OnDeath?.Invoke(this , EventArgs.Empty);
+        }
+        else
+        {
+            OnDamaged?.Invoke(this , EventArgs.Empty);
         }
         
     }
 }
+
