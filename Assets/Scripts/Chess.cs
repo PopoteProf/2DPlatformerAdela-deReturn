@@ -9,10 +9,13 @@ public class Chess : MonoBehaviour
     [SerializeField] private Animator _animator;
     [SerializeField] private bool _isOpen;
     [SerializeField] private ParticleSystem _psCoindUp;
+    [SerializeField] private AudioSource _audioSource;
 
     public void OpenChess() {
         _animator.SetBool("Open", true);
         if (_psCoindUp != null) _psCoindUp.Play();
+        if( _audioSource!=null) _audioSource.Play();
+        
         enabled = false;
     }
     
