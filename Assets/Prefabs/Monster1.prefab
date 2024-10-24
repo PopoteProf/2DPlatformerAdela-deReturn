@@ -122,6 +122,7 @@ Transform:
   - {fileID: 2050437367437838590}
   - {fileID: 2050437368299358084}
   - {fileID: 2050437367886261816}
+  - {fileID: 2393966781724046984}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &2050437367659002458
@@ -528,3 +529,67 @@ Transform:
   m_Children: []
   m_Father: {fileID: 2050437367659002453}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &4046200265157620955
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2393966781724046984}
+  - component: {fileID: 2834736138489208740}
+  m_Layer: 0
+  m_Name: AudioPart
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2393966781724046984
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4046200265157620955}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -4.2298493, y: 0.833822, z: -0.082382895}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2050437367659002453}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2834736138489208740
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4046200265157620955}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5d4c935578c14cee9a3a0a85051bf432, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _monster: {fileID: 2050437367659002459}
+  _audioMixerGroup: {fileID: -2952594542756236941, guid: 6bf5c2627db417149b72db4cd9dfd36a, type: 2}
+  _attackSound:
+    _minPitch: 1
+    _maxPitch: 1
+    _volume: 0.75
+    _sounds:
+    - {fileID: 8300000, guid: ac6034ade498bb94b87620cdf6eac48b, type: 3}
+  _damagedSound:
+    _minPitch: 1
+    _maxPitch: 1
+    _volume: 0.75
+    _sounds:
+    - {fileID: 8300000, guid: bbe0dae6660eee043a3e25d3e6a5488e, type: 3}
+  _DeathSound:
+    _minPitch: 1
+    _maxPitch: 1
+    _volume: 0.878
+    _sounds:
+    - {fileID: 8300000, guid: dd919e8283aedaf4b9ef1c91e3b924e7, type: 3}
