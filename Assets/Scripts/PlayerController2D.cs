@@ -73,7 +73,7 @@ public class PlayerController2D : MonoBehaviour, IDamagable
         if (_isGrounded == false && isGrounded && _pSLanding != null)
         {
             _pSLanding.Play();
-            OnLanding.Invoke(this, EventArgs.Empty);
+            OnLanding?.Invoke(this, EventArgs.Empty);
         }
         OnIsGrounded?.Invoke(this, isGrounded);
         _isGrounded = isGrounded;
