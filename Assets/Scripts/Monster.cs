@@ -11,6 +11,7 @@ public class Monster : MonoBehaviour , IDamagable
     [SerializeField] private SpriteRenderer _spriteRenderer;
     [SerializeField] private Animator _animator;
     [SerializeField] private int _hp =2;
+    [SerializeField] private int _ScoreGaine =10;
     [Header("Move")]
     [SerializeField] private float _moveSpeedPower= 3;
     
@@ -147,6 +148,8 @@ public class Monster : MonoBehaviour , IDamagable
    
 
     private void ManagerAttack() {
+        if (StaticData.IsPlayerDead)return;
+
         _timer += Time.deltaTime;
         if (_timer >= _attackDamageDelay && !_hadAttack) {
             if (_diplayDebugGizmos) {
@@ -237,6 +240,7 @@ public class Monster : MonoBehaviour , IDamagable
                 Destroy(gameObject);
             }
             OnDeath?.Invoke(this , EventArgs.Empty);
+            StaticData.ChangePlayerScore(_ScoreGaine);
         }
         else
         {
