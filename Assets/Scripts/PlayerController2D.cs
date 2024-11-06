@@ -32,6 +32,12 @@ public class PlayerController2D : MonoBehaviour, IDamagable
     [SerializeField] private ParticleSystem _pSHit;
     [NonSerialized]public Chess Chess;
 
+    public event EventHandler OnLanding;
+    public event EventHandler OnJumping;
+    public event EventHandler OnAttack;
+    public event EventHandler<bool> OnWalking;
+    public event EventHandler<bool> OnIsGrounded;
+
 
     private float _timer;
     private bool _isDamaged;
@@ -41,8 +47,20 @@ public class PlayerController2D : MonoBehaviour, IDamagable
     private Vector3 _velocity;
     private bool _flip;
     private bool _isGrounded;
-    
+
+    private void Start()
+    {
+        StaticData.OnPlayerDeath+= StaticDataOnOnPlayerDeath;
+    }
+
+    private void StaticDataOnOnPlayerDeath(object sender, EventArgs e) {
+        
+        _animator.SetBool("Dead", true);
+    }
+
     void Update() {
+        if (StaticData.IsPlayerDead) return;
+        
         if (_isDamaged) {
             ManageIsDamaged();
             return;
@@ -59,13 +77,17 @@ public class PlayerController2D : MonoBehaviour, IDamagable
             Chess = null;
         }
         ManagerMove();
-        
     }
 
     private void CheckIfGrounded() {
         bool isGrounded = Physics2D.Raycast(transform.position, Vector3.down , _groundDetectionLength, _groundMask);
         if (_animator)_animator.SetBool("IsGrounded", isGrounded);
-        if( _isGrounded==false && isGrounded&&_pSLanding!=null) _pSLanding.Play();
+        if (_isGrounded == false && isGrounded && _pSLanding != null)
+        {
+            _pSLanding.Play();
+            OnLanding?.Invoke(this, EventArgs.Empty);
+        }
+        OnIsGrounded?.Invoke(this, isGrounded);
         _isGrounded = isGrounded;
     }
 
@@ -87,6 +109,7 @@ public class PlayerController2D : MonoBehaviour, IDamagable
         if (Input.GetKeyDown(KeyCode.UpArrow) && _isGrounded) {
             _velocity.y += _jumpPower;
             if(_pSJump!=null)_pSJump.Play();
+            OnJumping?.Invoke(this, EventArgs.Empty);
         }
         _rigidbody.velocity = _velocity;
         
@@ -108,6 +131,7 @@ public class PlayerController2D : MonoBehaviour, IDamagable
             if(_velocity.x>0&&_PSDashRight!=null)_PSDashRight.Play();
         }
 
+        OnWalking?.Invoke(this, isWalking);
         _isWalking = isWalking;
     }
 
@@ -162,6 +186,7 @@ public class PlayerController2D : MonoBehaviour, IDamagable
         _timer = 0;
         _isAttacking = true;
         if (_animator)_animator.SetBool("Attack", true);
+        OnAttack?.Invoke(this , EventArgs.Empty);
     }
     
     public void TakeDamage(int damage, Vector2 origin) {
@@ -169,8 +194,7 @@ public class PlayerController2D : MonoBehaviour, IDamagable
         _rigidbody.AddForce(push * _damagedBumpForce, ForceMode2D.Impulse);
         //_rigidbody.velocity = push * _damagedBumpForce;
         _isDamaged = true;
-
-        
+        StaticData.PlayerTakeDamage(damage);
     }
 
     private void OnDrawGizmos()
