@@ -45,12 +45,12 @@ public class AudioPlayerEffects : MonoBehaviour
 
     private void PlayerController2DOnOnIsGrounded(object sender, bool e) {
         _isGrounded = e;
-        if (!e) _footStepTimer = 0;
+        if (!e) _footStepTimer = _foodStepDelay;
     }
 
     private void PlayerController2DOnOnWalking(object sender, bool e) {
         _isWalking = e;
-        if (!e) _footStepTimer = 0;
+        if (!e) _footStepTimer = _foodStepDelay;
     }
 
     private void PlayerController2DOnOnAttack(object sender, EventArgs e) {
