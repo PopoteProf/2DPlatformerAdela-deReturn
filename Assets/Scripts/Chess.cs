@@ -8,6 +8,7 @@ public class Chess : MonoBehaviour
 {
     [SerializeField] private Animator _animator;
     [SerializeField] private bool _isOpen;
+    [SerializeField] private bool _close;
     [SerializeField] private ParticleSystem _psCoindUp;
     [SerializeField] private AudioSource _audioSource;
     [SerializeField] private int _goldGain = 5;
