@@ -50,8 +50,20 @@ public class PlayerController2D : MonoBehaviour, IDamagable
     private Vector3 _velocity;
     private bool _flip;
     private bool _isGrounded;
-    
+
+    private void Start()
+    {
+        StaticData.OnPlayerDeath+= StaticDataOnOnPlayerDeath;
+    }
+
+    private void StaticDataOnOnPlayerDeath(object sender, EventArgs e) {
+        
+        _animator.SetBool("Dead", true);
+    }
+
     void Update() {
+        if (StaticData.IsPlayerDead) return;
+        
         if (_isDamaged) {
             ManageIsDamaged();
             return;
@@ -185,8 +197,7 @@ public class PlayerController2D : MonoBehaviour, IDamagable
         _rigidbody.AddForce(push * _damagedBumpForce, ForceMode2D.Impulse);
         //_rigidbody.velocity = push * _damagedBumpForce;
         _isDamaged = true;
-
-        
+        StaticData.PlayerTakeDamage(damage);
     }
 
     private void OnDrawGizmos()
