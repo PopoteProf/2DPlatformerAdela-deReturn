@@ -11,7 +11,14 @@ public class AudioElement {
     [SerializeField] private List<AudioClip> _sounds;
 
     public float Volume => _volume;
-    
+
+    public bool IsNull {
+        get {
+            if (_sounds == null || _sounds.Count == 0) return true;
+            return false;
+        }
+    }
+
     public AudioClip GetSound() {
         if (_sounds == null || _sounds.Count == 0) return null;
         return _sounds[Random.Range(0, _sounds.Count)];

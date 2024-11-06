@@ -16,6 +16,7 @@ public class AudioManager : MonoBehaviour
     //[SerializeField] private AudioMixerGroup _sfxMixer;
     [SerializeField] private AudioMixerGroup _musicMixer;
     [SerializeField] private AudioMixerGroup _AmbianceMixer;
+    [SerializeField] private AudioMixerGroup _SFXMixer;
 
     [Space(10), SerializeField] private AudioClip _defaultMusic;
     [SerializeField] private AudioClip _defaultAmbiance;
@@ -31,6 +32,7 @@ public class AudioManager : MonoBehaviour
     private List<ActiveMusicAudioSource> _activeAmbianceAudioSources = new List<ActiveMusicAudioSource>();
     private ActiveMusicAudioSource _activeAmbianceAudioSource;
     private void Awake() {
+        if( Instance!=null) Destroy(gameObject);
         Instance = this;
     }
 
@@ -140,6 +142,19 @@ public class AudioManager : MonoBehaviour
             _activeAmbianceAudioSources[i].NormalizeVolume = _activeAmbianceAudioSources[i].Time / _ambianceFadeTime;
             _activeAmbianceAudioSources[i].AudioSource.volume = _activeAmbianceAudioSources[i].NormalizeVolume;
         }
+    }
+
+    public void PlaySFX(AudioElement audioElement)
+    {
+        if (audioElement.IsNull) return;
+        AudioSource audioSource = transform.AddComponent<AudioSource>();
+        audioSource.clip = audioElement.GetSound();
+        audioSource.loop = false;
+        audioSource.outputAudioMixerGroup = _SFXMixer;
+        audioSource.volume = audioElement.Volume;
+        audioSource.spatialize = false;
+        audioSource.Play();
+        Destroy(audioSource, audioSource.clip.length+1);
     }
     
     private class ActiveMusicAudioSource
