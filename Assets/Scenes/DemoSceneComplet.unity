@@ -30937,7 +30937,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1174211335
 RectTransform:
   m_ObjectHideFlags: 0
@@ -33865,6 +33865,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4649568590705092260, guid: 29f128c5e66c7204287fab6c6d335a2c, type: 3}
+      propertyPath: _audioMixer
+      value: 
+      objectReference: {fileID: 24100000, guid: e15e70eed606f124ca274c9637df0357, type: 2}
+    - target: {fileID: 4649568590705092260, guid: 29f128c5e66c7204287fab6c6d335a2c, type: 3}
       propertyPath: _closeButton
       value: 
       objectReference: {fileID: 417444802}
@@ -34705,7 +34709,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2c4b7036615d47cda2e96772d9cc2b23, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _bpMenu: {fileID: 0}
+  _bpMenu: {fileID: 1570419628}
   _uiPauseMenu: {fileID: 1174211338}
 --- !u!1 &1581859089
 GameObject:
@@ -45426,7 +45430,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 2018420790}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1174211334}
+        m_TargetAssemblyTypeName: 
+        m_MethodName: 
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: 
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &2018420790
 MonoBehaviour:
   m_ObjectHideFlags: 0
