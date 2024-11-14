@@ -12495,7 +12495,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
+  m_Sprite: {fileID: 21300000, guid: 902c164dae2cc634c9f72a07bbc5190f, type: 3}
   m_Type: 3
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -26289,6 +26289,7 @@ GameObject:
   - component: {fileID: 1098423544}
   - component: {fileID: 1098423543}
   - component: {fileID: 1098423542}
+  - component: {fileID: 1098423545}
   m_Layer: 5
   m_Name: PanelPauseMenu
   m_TagString: Untagged
@@ -26329,7 +26330,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b07a03e067414cc28322eeb71916259c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _canvasGroup: {fileID: 0}
+  _canvasGroup: {fileID: 1098423545}
   _fadeTime: 1
   _bpResume: {fileID: 1845844033}
   _bpRestart: {fileID: 175218834}
@@ -26374,6 +26375,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1098423540}
   m_CullTransparentMesh: 1
+--- !u!225 &1098423545
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1098423540}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!1 &1099694774
 GameObject:
   m_ObjectHideFlags: 0
@@ -32254,6 +32267,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8612835672955187461, guid: a66d728a88ee1d3469c6941a0c6eae97, type: 3}
       propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9203427738578962699, guid: a66d728a88ee1d3469c6941a0c6eae97, type: 3}
+      propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
