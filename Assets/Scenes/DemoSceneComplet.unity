@@ -27199,7 +27199,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 796871587}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1174211334}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &796871587
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -28057,11 +28069,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1684090357}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &922353083 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 9107173604767688959, guid: 29f128c5e66c7204287fab6c6d335a2c, type: 3}
-  m_PrefabInstance: {fileID: 1488748038}
-  m_PrefabAsset: {fileID: 0}
 --- !u!224 &922353084 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 5819160785024481976, guid: 29f128c5e66c7204287fab6c6d335a2c, type: 3}
@@ -28072,7 +28079,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 4649568590705092260, guid: 29f128c5e66c7204287fab6c6d335a2c, type: 3}
   m_PrefabInstance: {fileID: 1488748038}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 922353083}
+  m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4c5e7ef126604d8f921916e53594314a, type: 3}
@@ -30931,13 +30938,14 @@ GameObject:
   - component: {fileID: 1174211337}
   - component: {fileID: 1174211336}
   - component: {fileID: 1174211338}
+  - component: {fileID: 1174211339}
   m_Layer: 5
   m_Name: PauseMenuPanel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1174211335
 RectTransform:
   m_ObjectHideFlags: 0
@@ -31012,13 +31020,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b07a03e067414cc28322eeb71916259c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _canvasGroup: {fileID: 0}
+  _canvasGroup: {fileID: 1174211339}
   _fadeTime: 1
   _bpResume: {fileID: 2018420789}
   _bpRestart: {fileID: 657090356}
   _bpOptions: {fileID: 796871586}
   _bpMaineMenu: {fileID: 691812513}
   _uiPanelOption: {fileID: 922353085}
+--- !u!225 &1174211339
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1174211334}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!1 &1190150697
 GameObject:
   m_ObjectHideFlags: 0
@@ -31032,7 +31052,7 @@ GameObject:
   - component: {fileID: 1190150699}
   - component: {fileID: 1190150701}
   m_Layer: 5
-  m_Name: Image
+  m_Name: HealBar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -31070,15 +31090,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.5566038, g: 0, b: 0, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 0}
-  m_Type: 0
+  m_Sprite: {fileID: 21300000, guid: e4c261293bfe98f4fa9d9591373bc443, type: 3}
+  m_Type: 3
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -33882,15 +33902,31 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5237630570256830181, guid: 29f128c5e66c7204287fab6c6d335a2c, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
-      value: 1
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 5237630570256830181, guid: 29f128c5e66c7204287fab6c6d335a2c, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 922353083}
+      objectReference: {fileID: 1174211334}
     - target: {fileID: 5237630570256830181, guid: 29f128c5e66c7204287fab6c6d335a2c, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5237630570256830181, guid: 29f128c5e66c7204287fab6c6d335a2c, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: SetActive
+      objectReference: {fileID: 0}
+    - target: {fileID: 5237630570256830181, guid: 29f128c5e66c7204287fab6c6d335a2c, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: UnityEngine.GameObject, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 5237630570256830181, guid: 29f128c5e66c7204287fab6c6d335a2c, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_BoolArgument
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5237630570256830181, guid: 29f128c5e66c7204287fab6c6d335a2c, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 5570280957650240431, guid: 29f128c5e66c7204287fab6c6d335a2c, type: 3}
       propertyPath: m_AnchorMax.y
