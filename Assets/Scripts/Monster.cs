@@ -11,6 +11,7 @@ public class Monster : MonoBehaviour , IDamagable
     [SerializeField] private SpriteRenderer _spriteRenderer;
     [SerializeField] private Animator _animator;
     [SerializeField] private int _hp =2;
+    [SerializeField] private int _ScoreGaine =10;
     [Header("Move")]
     [SerializeField] private float _moveSpeedPower= 3;
     
@@ -29,10 +30,17 @@ public class Monster : MonoBehaviour , IDamagable
     [SerializeField] private float _groundDetectionLength = 0.75f;
     [SerializeField] private Transform _leftDetector, _rightDetectot;
     [SerializeField] private float _detectionDistance = 0.5f;
-    [Space(5),Header("Debug"),SerializeField] private bool _diplayDebugGizmos;
+    [Space(10)] 
+    [SerializeField] private bool _destroyOnDeath;
+    [SerializeField] private GameObject _prefabPSDeath;
+    [Space(10),Header("Debug"),SerializeField] private bool _diplayDebugGizmos;
     [SerializeField] private SpriteRenderer _leftTriggerZone, _rightTriggerZonne;
     [SerializeField] private float _damagedBumpForce = 7;
-    
+
+
+    public event EventHandler OnAttack;
+    public event EventHandler OnDamaged;
+    public event EventHandler OnDeath;
 
     private Vector3 _velocity;
     private bool _isGrounded;
@@ -140,6 +148,8 @@ public class Monster : MonoBehaviour , IDamagable
    
 
     private void ManagerAttack() {
+        if (StaticData.IsPlayerDead)return;
+
         _timer += Time.deltaTime;
         if (_timer >= _attackDamageDelay && !_hadAttack) {
             if (_diplayDebugGizmos) {
@@ -162,6 +172,7 @@ public class Monster : MonoBehaviour , IDamagable
     }
 
     private void DoAttackDamage() {
+        OnAttack?.Invoke(this , EventArgs.Empty);
         Collider2D[] cols = new Collider2D[0];
         if (_flip) cols =Physics2D.OverlapBoxAll(_leftTriggerZone.transform.position, new Vector2(1,2), 0);
         else cols =Physics2D.OverlapBoxAll(_rightTriggerZonne.transform.position, new Vector2(1,2), 0);
@@ -224,6 +235,16 @@ public class Monster : MonoBehaviour , IDamagable
             if (_animator)_animator.SetBool("Dead", true);
             if (_animator)_animator.SetBool("IsDamaged", false);
             this.enabled = false;
+            if (_destroyOnDeath) {
+                if (_prefabPSDeath != null) Instantiate(_prefabPSDeath, transform.position, Quaternion.identity);
+                Destroy(gameObject);
+            }
+            OnDeath?.Invoke(this , EventArgs.Empty);
+            StaticData.ChangePlayerScore(_ScoreGaine);
+        }
+        else
+        {
+            OnDamaged?.Invoke(this , EventArgs.Empty);
         }
         
     }
