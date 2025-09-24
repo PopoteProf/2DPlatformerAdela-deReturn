@@ -103,14 +103,14 @@ public class Monster : MonoBehaviour , IDamagable
         if (_animator)_animator.SetBool("IsWalking", true);
         
         
-        _velocity = _rigidbody.velocity;
+        _velocity = _rigidbody.linearVelocity;
         _velocity.x =  _moveSpeedPower*_direction;
-        _rigidbody.velocity = _velocity;
+        _rigidbody.linearVelocity = _velocity;
         if (CheckForBounds()) {
             _monsterStat = MonsterStat.waiting;
             _timer = 0;
             _velocity.x =  0;
-            _rigidbody.velocity = _velocity;
+            _rigidbody.linearVelocity = _velocity;
             FlipMonster();
         }
     }
@@ -180,7 +180,7 @@ public class Monster : MonoBehaviour , IDamagable
     private void StartAttack() {
         _timer = 0;
         _velocity.x =  0;
-        _rigidbody.velocity = _velocity;
+        _rigidbody.linearVelocity = _velocity;
         _hadAttack = false;
         _monsterStat = MonsterStat.attacking;
         if (_animator)_animator.SetBool("Attack", true);

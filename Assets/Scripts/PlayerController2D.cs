@@ -68,11 +68,11 @@ public class PlayerController2D : MonoBehaviour, IDamagable
     }
 
     private void ManagerMove() {
-        _velocity = _rigidbody.velocity;
+        _velocity = _rigidbody.linearVelocity;
         //_velocity.x = Mathf.Clamp(_velocity.x+ Input.GetAxisRaw("Horizontal") * _moveSpeedPower, -_moveSpeedLimite, _moveSpeedLimite);
         _velocity.x = Input.GetAxisRaw("Horizontal") * _moveSpeedPower;
         if (Input.GetKeyDown(KeyCode.UpArrow)&&_isGrounded) _velocity.y += _jumpPower;
-        _rigidbody.velocity = _velocity;
+        _rigidbody.linearVelocity = _velocity;
         
         CheckFlip();
         
