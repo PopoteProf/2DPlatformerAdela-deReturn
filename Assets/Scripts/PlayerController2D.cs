@@ -104,14 +104,14 @@ public class PlayerController2D : MonoBehaviour, IDamagable
     }
 
     private void ManagerMove() {
-        _velocity = _rigidbody.velocity;
+        _velocity = _rigidbody.linearVelocity;
         _velocity.x = Input.GetAxisRaw("Horizontal") * _moveSpeedPower;
         if (Input.GetKeyDown(KeyCode.UpArrow) && _isGrounded) {
             _velocity.y += _jumpPower;
             if(_pSJump!=null)_pSJump.Play();
             OnJumping?.Invoke(this, EventArgs.Empty);
         }
-        _rigidbody.velocity = _velocity;
+        _rigidbody.linearVelocity = _velocity;
         
         CheckFlip();
         bool isWalking = _velocity.x > 0.3f || _velocity.x < -0.3f;
