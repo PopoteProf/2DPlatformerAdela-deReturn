@@ -1,6 +1,5 @@
 using UnityEngine;
 using UnityEngine.Rendering.Universal;
-[RequireComponent(typeof(Light2D))]
 public class TorcheScripte : MonoBehaviour
 {
     
@@ -9,7 +8,6 @@ public class TorcheScripte : MonoBehaviour
     [SerializeField] private float _minIntencity = 0.8f;
     [SerializeField] private float _maxIntencity = 1.2f;
     [SerializeField] private AnimationCurve _animationCurve = AnimationCurve.EaseInOut(0,0,1,1);
-    
     private Light2D _light;
 
     private float _previusIntencity;
@@ -19,6 +17,7 @@ public class TorcheScripte : MonoBehaviour
     private float _timer;
     void Start() {
         _light = GetComponent<Light2D>();
+        if( _light ==null) return;
         _light.intensity = Random.Range(_minIntencity, _maxIntencity);
     }
 
