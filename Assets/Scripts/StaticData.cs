@@ -1,4 +1,5 @@
 using System;
+using UnityEngine;
 
 public static class StaticData
 {
@@ -16,6 +17,7 @@ public static class StaticData
     public static event EventHandler<int> OnPlayerScoreChange;
 
     public static void PlayerTakeDamage(int damage) {
+        Debug.Log("Takedamage");
         PlayerHP -= damage;
         if (PlayerHP <= 0) {
             PlayerHP = 0;
