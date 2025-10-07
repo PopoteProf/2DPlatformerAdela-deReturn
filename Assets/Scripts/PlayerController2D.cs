@@ -21,7 +21,7 @@ public class PlayerController2D : MonoBehaviour, IDamagable
     [Space(5), Header("Attack Parameters"), SerializeField]
     private float _attackTime=0.8f;
     [SerializeField]private float _attackDamageDelay = 0.4f;
-    [SerializeField]    private SpriteRenderer _attackZoneLeft, _attackZoneRight;
+    [SerializeField]private SpriteRenderer _attackZoneLeft, _attackZoneRight;
 
     [Header("Particules")]
     [SerializeField] private ParticleSystem _psWalk;
@@ -30,7 +30,8 @@ public class PlayerController2D : MonoBehaviour, IDamagable
     [SerializeField] private ParticleSystem _pSJump;
     [SerializeField] private ParticleSystem _pSLanding;
     [SerializeField] private ParticleSystem _pSHit;
-    [NonSerialized]public Chess Chess;
+    private Interactable _currentInteractable;
+    private LaderComponent _currentLaderComponent;
 
     public event EventHandler OnLanding;
     public event EventHandler OnJumping;
@@ -47,14 +48,13 @@ public class PlayerController2D : MonoBehaviour, IDamagable
     private Vector3 _velocity;
     private bool _flip;
     private bool _isGrounded;
+    private bool _isOnLadder;
 
-    private void Start()
-    {
+    private void Start() {
         StaticData.OnPlayerDeath+= StaticDataOnOnPlayerDeath;
     }
 
     private void StaticDataOnOnPlayerDeath(object sender, EventArgs e) {
-        
         _animator.SetBool("Dead", true);
     }
 
@@ -72,9 +72,8 @@ public class PlayerController2D : MonoBehaviour, IDamagable
             return;
         }
 
-        if (Chess != null && Input.GetKeyDown(KeyCode.E)) {
-            Chess.OpenChess();
-            Chess = null;
+        if( _currentInteractable!=null &&Input.GetKeyDown(KeyCode.E)&& _currentInteractable.CanInteract()){
+            _currentInteractable.Interact();
         }
         ManagerMove();
     }
@@ -91,8 +90,7 @@ public class PlayerController2D : MonoBehaviour, IDamagable
         _isGrounded = isGrounded;
     }
 
-    private void CheckFlip()
-    {
+    private void CheckFlip() {
         if (_SpriteIsFlip) {
             if (_velocity.x < -0.1f) _flip = false;
             if (_velocity.x > 0.1f) _flip = true;
@@ -197,12 +195,40 @@ public class PlayerController2D : MonoBehaviour, IDamagable
         StaticData.PlayerTakeDamage(damage);
     }
 
+    
+
+    public void SubmitNewInteractable(Interactable interactable) {
+        if (_isOnLadder) return;
+        if (_currentInteractable == interactable) return;
+        if (_currentInteractable != null) {
+            _currentInteractable.Unsubscribe();
+        }
+        _currentInteractable = interactable;
+    }
+    public void UnSubmitInteractable(Interactable interactable) {
+        if (_isOnLadder) return;
+        if (_currentInteractable == interactable) _currentInteractable = null;
+    }
+    
+    public void EnterOnLader(LaderComponent ladder)
+    {
+        _isOnLadder = true;
+        if (_animator!=null)_animator.SetBool("IsOnLader",true);
+        _currentLaderComponent = ladder;
+    }
+    
+    
     private void OnDrawGizmos()
     {
         if(!_diplayDebugGizmos) return;
         if( _isGrounded)Gizmos.color = Color.yellow;
         else Gizmos.color = Color.red;
         Gizmos.DrawLine(transform.position, transform.position+Vector3.down * _groundDetectionLength);
+
+        if (_isOnLadder) {
+            Gizmos.color = Color.blue;
+            Gizmos.DrawLine(transform.position, _currentLaderComponent.GetClosestPosition(transform.position));
+        }
     }
     
     
