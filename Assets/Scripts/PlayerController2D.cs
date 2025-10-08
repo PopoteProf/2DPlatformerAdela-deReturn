@@ -7,6 +7,7 @@ public class PlayerController2D : MonoBehaviour, IDamagable
     [SerializeField] private float _moveSpeedPower= 10;
     [SerializeField] private float _jumpPower=10;
     [SerializeField] private Rigidbody2D _rigidbody;
+    [SerializeField] private float _moveSpeedLadder = 5;
 
     [Space(5)] 
     [SerializeField] private bool _SpriteIsFlip;
@@ -72,6 +73,14 @@ public class PlayerController2D : MonoBehaviour, IDamagable
             return;
         }
 
+        if (_isOnLadder) {
+            if (Input.GetKeyDown(KeyCode.E)) {
+                LeaveLadder();
+            }
+            ManageLadderMovement();
+            return;
+        }
+
         if( _currentInteractable!=null &&Input.GetKeyDown(KeyCode.E)&& _currentInteractable.CanInteract()){
             _currentInteractable.Interact();
         }
@@ -116,6 +125,7 @@ public class PlayerController2D : MonoBehaviour, IDamagable
         
         //Gère l'animator et le flip du sprite lors de la marche.
         if (_animator)_animator.SetBool("IsWalking",isWalking );
+        if (_animator) _animator.SetFloat("YVelocity",_velocity.y );
         if (_spriterendere)_spriterendere.flipX = _flip;
 
         //Gère les particule lors de la marche.
@@ -210,16 +220,41 @@ public class PlayerController2D : MonoBehaviour, IDamagable
         if (_currentInteractable == interactable) _currentInteractable = null;
     }
     
-    public void EnterOnLader(LaderComponent ladder)
-    {
+    public void EnterOnLader(LaderComponent ladder) {
         _isOnLadder = true;
         if (_animator!=null)_animator.SetBool("IsOnLader",true);
         _currentLaderComponent = ladder;
+        transform.position = _currentLaderComponent.GetClosestPointCommand(transform.position);
+        _rigidbody.linearVelocity = Vector2.zero;
+        _rigidbody.gravityScale = 0;
+    }
+
+    private void ManageLadderMovement() {
+        
+        _velocity = _rigidbody.linearVelocity;
+        if (Input.GetAxisRaw("Horizontal") < -0.5f || Input.GetAxisRaw("Horizontal") > 0.5f) {
+            LeaveLadder();
+            return;
+        }
+        _velocity.y = Input.GetAxisRaw("Vertical") * _moveSpeedLadder;
+        
+        _rigidbody.linearVelocity = _velocity;
+        if (_animator) _animator.SetFloat("YVelocity",_velocity.y );
+        
+        
+        if( !_currentLaderComponent.IsOnLadder(transform.position))
+            LeaveLadder();
+    }
+
+    private void LeaveLadder() {
+        _currentLaderComponent = null;
+        _isOnLadder = false;
+        _rigidbody.gravityScale = 2;
+        if (_animator!=null)_animator.SetBool("IsOnLader",false);
     }
     
     
-    private void OnDrawGizmos()
-    {
+    private void OnDrawGizmos() {
         if(!_diplayDebugGizmos) return;
         if( _isGrounded)Gizmos.color = Color.yellow;
         else Gizmos.color = Color.red;
@@ -227,7 +262,8 @@ public class PlayerController2D : MonoBehaviour, IDamagable
 
         if (_isOnLadder) {
             Gizmos.color = Color.blue;
-            Gizmos.DrawLine(transform.position, _currentLaderComponent.GetClosestPosition(transform.position));
+            Gizmos.DrawLine(transform.position, _currentInteractable.transform.position);
+            Gizmos.DrawLine(transform.position, _currentLaderComponent.GetClosestPointCommand(transform.position));
         }
     }
     

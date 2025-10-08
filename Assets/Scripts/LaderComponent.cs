@@ -5,9 +5,7 @@ public class LaderComponent : Interactable
 {
     [SerializeField] private Vector2 _targetPosition;
     private PlayerController2D _player;
-    public override void Interact()
-    {
-        base.Interact();
+    public override void Interact() {
         if (_player != null) {
             _player.EnterOnLader(this);
         }
@@ -38,7 +36,30 @@ public class LaderComponent : Interactable
     public Vector2 GetClosestPosition(Vector2 position) {
         return NearestPointOnLine(transform.position, (Vector3)_targetPosition - transform.position, position);
     }
-    
+
+    public Vector2 GetClosestPointCommand(Vector2 position) {
+        // find the closest point on the ladder line.
+        float angle = Vector2.Angle(
+            _targetPosition.normalized,
+            (position - (Vector2)transform.position).normalized);
+        Debug.Log("Angle"+ angle);
+        float adjasent = Mathf.Cos(angle*Mathf.Deg2Rad)*Vector2.Distance(position, transform.position); 
+        Vector2 testPoint =_targetPosition.normalized*adjasent;
+        
+        //Check if the point is between the 2 points of the ladder
+        float testDistance = _targetPosition.magnitude;
+        if (testPoint.magnitude > testDistance) return _targetPosition+(Vector2)transform.position;
+        if (Vector2.Distance(testPoint, _targetPosition) > testDistance) return transform.position;
+        return testPoint+(Vector2)transform.position;
+    }
+
+    public bool IsOnLadder(Vector2 position)
+    {
+        float testDistance = _targetPosition.magnitude;
+        if (Vector2.Distance(position, transform.position) > testDistance) return false;
+        if (Vector2.Distance(position, _targetPosition+(Vector2)transform.position) > testDistance) return false;
+        return true;
+    }
     public  Vector2 NearestPointOnLine(Vector2 linePnt, Vector2 lineDir, Vector2 pnt)
     {
         lineDir.Normalize();//this needs to be a unit vector
