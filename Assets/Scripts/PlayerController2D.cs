@@ -199,10 +199,15 @@ public class PlayerController2D : MonoBehaviour, IDamagable
     
     public void TakeDamage(int damage, Vector2 origin) {
         Vector2 push = new Vector2(transform.position.x - origin.x, 1).normalized;
+        _rigidbody.linearVelocity = Vector2.zero;
         _rigidbody.AddForce(push * _damagedBumpForce, ForceMode2D.Impulse);
         //_rigidbody.velocity = push * _damagedBumpForce;
         _isDamaged = true;
         StaticData.PlayerTakeDamage(damage);
+    }
+
+    public void HealPlayer(int healAmount) {
+        StaticData.PlayerHeal(healAmount);
     }
 
     
