@@ -27,6 +27,11 @@ public static class StaticData
         OnPlayerHPChange?.Invoke(null, EventArgs.Empty);
     }
 
+    public static void PlayerHeal(int heal) {
+        PlayerHP = Mathf.Clamp(PlayerHP + heal,0, PlayerMaxHP);
+        OnPlayerHPChange?.Invoke(null, EventArgs.Empty);
+    }
+
     public static void ChangePlayerScore(int change) {
         PlayerScore += change;
         OnPlayerScoreChange?.Invoke(null,PlayerScore);
