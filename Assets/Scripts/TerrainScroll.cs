@@ -1,14 +1,21 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
+[ExecuteInEditMode]
 public class TerrainScroll : MonoBehaviour
 {
-    [SerializeField] private TerrainGroup[] _terraingroup;
     [SerializeField] private Transform _ref;
+    [SerializeField] private TerrainGroup[] _terraingroup;
+    
+    [Space(10)] 
+    [Header("Debug")]
+    [SerializeField] private bool _updateInEditor;
 
+    
     public void Update() {
+#if UNITY_EDITOR
+        if (!_updateInEditor) return;
+#endif
         if (_ref == null) return;
         float displayFactor = _ref.position.x;
         foreach (var terrainGroup in _terraingroup) {
@@ -16,6 +23,15 @@ public class TerrainScroll : MonoBehaviour
 
             foreach (var objTransflorm in terrainGroup.Objects) {
                 objTransflorm.position = new Vector3(display, 0, 0);
+            }
+        }
+    }
+
+    public void ResetGroupPositions() {
+        foreach (var terrain in _terraingroup) {
+            foreach (var transform in terrain.Objects) {
+                transform.position = Vector3.zero;
+                
             }
         }
     }
