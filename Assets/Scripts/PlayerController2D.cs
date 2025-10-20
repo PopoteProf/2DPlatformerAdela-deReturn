@@ -7,6 +7,7 @@ public class PlayerController2D : MonoBehaviour, IDamagable
     [SerializeField] private float _moveSpeedPower=10;
     [SerializeField] private float _jumpPower=10;
     [SerializeField] private Rigidbody2D _rigidbody;
+    [SerializeField] private float _moveSpeedLadder = 5;
 
     [Space(5)] 
     [SerializeField] private bool _SpriteIsFlip;
@@ -21,7 +22,7 @@ public class PlayerController2D : MonoBehaviour, IDamagable
     [Space(5), Header("Attack Parameters"), SerializeField]
     private float _attackTime=0.8f;
     [SerializeField]private float _attackDamageDelay = 0.4f;
-    [SerializeField]    private SpriteRenderer _attackZoneLeft, _attackZoneRight;
+    [SerializeField]private SpriteRenderer _attackZoneLeft, _attackZoneRight;
 
     [Header("Particules")]
     [SerializeField] private ParticleSystem _psWalk;
@@ -30,7 +31,8 @@ public class PlayerController2D : MonoBehaviour, IDamagable
     [SerializeField] private ParticleSystem _pSJump;
     [SerializeField] private ParticleSystem _pSLanding;
     [SerializeField] private ParticleSystem _pSHit;
-    [NonSerialized]public Chess Chess;
+    private Interactable _currentInteractable;
+    private LaderComponent _currentLaderComponent;
 
     public event EventHandler OnLanding;
     public event EventHandler OnJumping;
@@ -47,14 +49,13 @@ public class PlayerController2D : MonoBehaviour, IDamagable
     private Vector3 _velocity;
     private bool _flip;
     private bool _isGrounded;
+    private bool _isOnLadder;
 
-    private void Start()
-    {
+    private void Start() {
         StaticData.OnPlayerDeath+= StaticDataOnOnPlayerDeath;
     }
 
     private void StaticDataOnOnPlayerDeath(object sender, EventArgs e) {
-        
         _animator.SetBool("Dead", true);
     }
 
@@ -72,9 +73,16 @@ public class PlayerController2D : MonoBehaviour, IDamagable
             return;
         }
 
-        if (Chess != null && Input.GetKeyDown(KeyCode.E)) {
-            Chess.OpenChess();
-            Chess = null;
+        if (_isOnLadder) {
+            if (Input.GetKeyDown(KeyCode.E)) {
+                LeaveLadder();
+            }
+            ManageLadderMovement();
+            return;
+        }
+
+        if( _currentInteractable!=null &&Input.GetKeyDown(KeyCode.E)&& _currentInteractable.CanInteract()){
+            _currentInteractable.Interact();
         }
         ManagerMove();
     }
@@ -91,8 +99,7 @@ public class PlayerController2D : MonoBehaviour, IDamagable
         _isGrounded = isGrounded;
     }
 
-    private void CheckFlip()
-    {
+    private void CheckFlip() {
         if (_SpriteIsFlip) {
             if (_velocity.x < -0.1f) _flip = false;
             if (_velocity.x > 0.1f) _flip = true;
@@ -118,6 +125,7 @@ public class PlayerController2D : MonoBehaviour, IDamagable
         
         //Gère l'animator et le flip du sprite lors de la marche.
         if (_animator)_animator.SetBool("IsWalking",isWalking );
+        if (_animator) _animator.SetFloat("YVelocity",_velocity.y );
         if (_spriterendere)_spriterendere.flipX = _flip;
 
         //Gère les particule lors de la marche.
@@ -191,18 +199,77 @@ public class PlayerController2D : MonoBehaviour, IDamagable
     
     public void TakeDamage(int damage, Vector2 origin) {
         Vector2 push = new Vector2(transform.position.x - origin.x, 1).normalized;
+        _rigidbody.linearVelocity = Vector2.zero;
         _rigidbody.AddForce(push * _damagedBumpForce, ForceMode2D.Impulse);
         //_rigidbody.velocity = push * _damagedBumpForce;
         _isDamaged = true;
         StaticData.PlayerTakeDamage(damage);
     }
 
-    private void OnDrawGizmos()
-    {
+    public void HealPlayer(int healAmount) {
+        StaticData.PlayerHeal(healAmount);
+    }
+
+    
+
+    public void SubmitNewInteractable(Interactable interactable) {
+        if (_isOnLadder) return;
+        if (_currentInteractable == interactable) return;
+        if (_currentInteractable != null) {
+            _currentInteractable.Unsubscribe();
+        }
+        _currentInteractable = interactable;
+    }
+    public void UnSubmitInteractable(Interactable interactable) {
+        if (_isOnLadder) return;
+        if (_currentInteractable == interactable) _currentInteractable = null;
+    }
+    
+    public void EnterOnLader(LaderComponent ladder) {
+        _isOnLadder = true;
+        if (_animator!=null)_animator.SetBool("IsOnLader",true);
+        _currentLaderComponent = ladder;
+        transform.position = _currentLaderComponent.GetClosestPointCommand(transform.position);
+        _rigidbody.linearVelocity = Vector2.zero;
+        _rigidbody.gravityScale = 0;
+    }
+
+    private void ManageLadderMovement() {
+        
+        _velocity = _rigidbody.linearVelocity;
+        if (Input.GetAxisRaw("Horizontal") < -0.5f || Input.GetAxisRaw("Horizontal") > 0.5f) {
+            LeaveLadder();
+            return;
+        }
+        _velocity.y = Input.GetAxisRaw("Vertical") * _moveSpeedLadder;
+        
+        _rigidbody.linearVelocity = _velocity;
+        if (_animator) _animator.SetFloat("YVelocity",_velocity.y );
+        
+        
+        if( !_currentLaderComponent.IsOnLadder(transform.position))
+            LeaveLadder();
+    }
+
+    private void LeaveLadder() {
+        _currentLaderComponent = null;
+        _isOnLadder = false;
+        _rigidbody.gravityScale = 2;
+        if (_animator!=null)_animator.SetBool("IsOnLader",false);
+    }
+    
+    
+    private void OnDrawGizmos() {
         if(!_diplayDebugGizmos) return;
         if( _isGrounded)Gizmos.color = Color.yellow;
         else Gizmos.color = Color.red;
         Gizmos.DrawLine(transform.position, transform.position+Vector3.down * _groundDetectionLength);
+
+        if (_isOnLadder) {
+            Gizmos.color = Color.blue;
+            Gizmos.DrawLine(transform.position, _currentInteractable.transform.position);
+            Gizmos.DrawLine(transform.position, _currentLaderComponent.GetClosestPointCommand(transform.position));
+        }
     }
     
     
