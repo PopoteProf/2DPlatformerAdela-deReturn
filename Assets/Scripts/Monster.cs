@@ -246,6 +246,5 @@ public class Monster : MonoBehaviour , IDamagable
         {
             OnDamaged?.Invoke(this , EventArgs.Empty);
         }
-        
     }
 }
