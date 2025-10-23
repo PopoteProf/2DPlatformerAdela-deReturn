@@ -42,6 +42,7 @@ public class UIPanelOption : MonoBehaviour
         _audioMixer.SetFloat("MusicVolume", Mathf.Log10(value) * 20);
     }
     private void ChangeAmbianceValue(float value) {
+
         _audioMixer.SetFloat("AmbianceVolume", Mathf.Log10(value) * 20);
     }
     private void ChangeSfxValue(float value) {
