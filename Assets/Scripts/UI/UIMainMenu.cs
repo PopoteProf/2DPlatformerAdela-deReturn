@@ -24,7 +24,7 @@ public class UIMainMenu : MonoBehaviour {
         _bpPlay.Select();
     }
 
-    private void UIClickPlay() => SceneManager.LoadScene(1);
+    private void UIClickPlay() => SceneManager.LoadScene(2);
     private void UIClickOption() => _uiPanelOption.OpenPanel();
     private void UIClickCredits() => _uiPanelCredits.OpenPanel();
     private void UIClickQuite() => Application.Quit();
