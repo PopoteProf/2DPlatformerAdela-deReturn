@@ -53,6 +53,12 @@ public class PlayerController2D : MonoBehaviour, IDamagable
 
     private void Start() {
         StaticData.OnPlayerDeath+= StaticDataOnOnPlayerDeath;
+        StaticData.ResetData();
+        
+    }
+
+    private void OnDestroy() {
+        StaticData.OnPlayerDeath-= StaticDataOnOnPlayerDeath;
     }
 
     private void StaticDataOnOnPlayerDeath(object sender, EventArgs e) {

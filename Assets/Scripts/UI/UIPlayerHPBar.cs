@@ -11,6 +11,10 @@ public class UIPlayerHPBar : MonoBehaviour
         _imgHPBar.fillAmount = StaticData.PlayerHP / (float)StaticData.PlayerMaxHP;
     }
 
+    private void OnDestroy() {
+        StaticData.OnPlayerHPChange-= StaticDataOnOnPlayerHPChange;
+    }
+
     private void StaticDataOnOnPlayerHPChange(object sender, EventArgs e) {
         _imgHPBar.fillAmount = StaticData.PlayerHP / (float)StaticData.PlayerMaxHP;
     }
