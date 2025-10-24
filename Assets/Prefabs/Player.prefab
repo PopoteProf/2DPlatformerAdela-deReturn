@@ -183,7 +183,7 @@ GameObject:
   - component: {fileID: 8011071985559387315}
   - component: {fileID: 8011071985559387319}
   - component: {fileID: 8011071985559387316}
-  - component: {fileID: 8330004659828979866}
+  - component: {fileID: 5664785034448897351}
   m_Layer: 7
   m_Name: Player
   m_TagString: Player
@@ -374,7 +374,7 @@ CapsuleCollider2D:
   m_Offset: {x: 0.0062404424, y: 0.6632445}
   m_Size: {x: 0.44759545, y: 1.2501531}
   m_Direction: 0
---- !u!114 &8330004659828979866
+--- !u!114 &5664785034448897351
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -383,11 +383,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 8011071985559387304}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 76a256c587112b44da7d37f3cfab3d52, type: 3}
+  m_Script: {fileID: 11500000, guid: 056b6b02047cf774e8f464ad6c5d3aa4, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::LaderComponent
-  _isInteractable: 1
-  _targetPosition: {x: 0, y: 0}
+  m_EditorClassIdentifier: Assembly-CSharp::TerrainScroll
+  _ref: {fileID: 8011071985559387317}
+  _terraingroup: []
+  _updateInEditor: 0
 --- !u!1 &8011071985903981705
 GameObject:
   m_ObjectHideFlags: 0
@@ -785,7 +786,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8176040607718699664, guid: 3168b125de7e6954d9e2bbe79893000f, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.47000003
+      value: 0.01
       objectReference: {fileID: 0}
     - target: {fileID: 8176040607718699664, guid: 3168b125de7e6954d9e2bbe79893000f, type: 3}
       propertyPath: m_LocalPosition.z
@@ -918,7 +919,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1098119888272471576, guid: 216245b7e3a0c8a44bae8c3337d038bb, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.76
+      value: 0.16
       objectReference: {fileID: 0}
     - target: {fileID: 1098119888272471576, guid: 216245b7e3a0c8a44bae8c3337d038bb, type: 3}
       propertyPath: m_LocalPosition.z
@@ -1512,7 +1513,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8792263055016873491, guid: 5271e800554bf76459057d60c31a8bda, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.9
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 8792263055016873491, guid: 5271e800554bf76459057d60c31a8bda, type: 3}
       propertyPath: m_LocalPosition.z
@@ -1719,7 +1720,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3721198566676142862, guid: 5bd39ff0c448b1a468d220b08e16755a, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.9
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 3721198566676142862, guid: 5bd39ff0c448b1a468d220b08e16755a, type: 3}
       propertyPath: m_LocalPosition.z
