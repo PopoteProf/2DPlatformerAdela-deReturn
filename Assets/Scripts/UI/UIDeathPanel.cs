@@ -14,6 +14,10 @@ public class UIDeathPanel : MonoBehaviour {
         gameObject.SetActive(false);
     }
 
+    private void OnDestroy() {
+        StaticData.OnPlayerDeath-= StaticDataOnOnPlayerDeath;
+    }
+
     private void StaticDataOnOnPlayerDeath(object sender, EventArgs e) {
         gameObject.SetActive(true);
         _canvasGroup.DOFade(1, _fadeInTime);

@@ -16,6 +16,12 @@ public static class StaticData
     public static event EventHandler<int> OnPlayerGoldChange;
     public static event EventHandler<int> OnPlayerScoreChange;
 
+    public static void ResetData() {
+        PlayerGold = 0;
+        PlayerScore = 0;
+        PlayerHP = PlayerMaxHP;
+        IsPlayerDead = false;
+    }
     public static void PlayerTakeDamage(int damage) {
         Debug.Log("Takedamage");
         PlayerHP -= damage;
