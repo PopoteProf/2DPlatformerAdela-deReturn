@@ -267,6 +267,7 @@ GameObject:
   - component: {fileID: 123560057}
   - component: {fileID: 123560056}
   - component: {fileID: 123560055}
+  - component: {fileID: 123560058}
   m_Layer: 5
   m_Name: BPNouvellePartie
   m_TagString: Untagged
@@ -318,7 +319,7 @@ MonoBehaviour:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
-    m_SelectedColor: {r: 0.49411765, g: 0.49411765, b: 0.49411765, a: 1}
+    m_SelectedColor: {r: 0.8301887, g: 0.8301887, b: 0.8301887, a: 1}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
@@ -388,6 +389,70 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 123560053}
   m_CullTransparentMesh: 1
+--- !u!114 &123560058
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 123560053}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c9297d1676c349cab0d893d666b803ea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::UIButtonFeedBack
+  _playSounds: 1
+  _acPointerEntrer:
+    _minPitch: 1
+    _maxPitch: 1
+    _volume: 0.75
+    _sounds: []
+  _acPointerExit:
+    _minPitch: 1
+    _maxPitch: 1
+    _volume: 0.75
+    _sounds: []
+  _acPointerDown:
+    _minPitch: 1
+    _maxPitch: 1
+    _volume: 0.75
+    _sounds: []
+  _playTweening: 1
+  _animationTime: 0.2
+  _animationCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 0.66044974
+      value: 0.99344903
+      inSlope: 0.07053653
+      outSlope: 0.07053653
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33041954
+    - serializedVersion: 3
+      time: 1.0123668
+      value: 0.5949142
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  _animationEndScale: 1.1
 --- !u!1 &139270814
 GameObject:
   m_ObjectHideFlags: 0
@@ -1688,6 +1753,7 @@ GameObject:
   - component: {fileID: 475010467}
   - component: {fileID: 475010466}
   - component: {fileID: 475010465}
+  - component: {fileID: 475010468}
   m_Layer: 5
   m_Name: BPCredits
   m_TagString: Untagged
@@ -1739,7 +1805,7 @@ MonoBehaviour:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
-    m_SelectedColor: {r: 0.49411765, g: 0.49411765, b: 0.49411765, a: 1}
+    m_SelectedColor: {r: 0.83137256, g: 0.83137256, b: 0.83137256, a: 1}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
@@ -1809,6 +1875,70 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 475010463}
   m_CullTransparentMesh: 1
+--- !u!114 &475010468
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 475010463}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c9297d1676c349cab0d893d666b803ea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::UIButtonFeedBack
+  _playSounds: 1
+  _acPointerEntrer:
+    _minPitch: 1
+    _maxPitch: 1
+    _volume: 0.75
+    _sounds: []
+  _acPointerExit:
+    _minPitch: 1
+    _maxPitch: 1
+    _volume: 0.75
+    _sounds: []
+  _acPointerDown:
+    _minPitch: 1
+    _maxPitch: 1
+    _volume: 0.75
+    _sounds: []
+  _playTweening: 1
+  _animationTime: 0.2
+  _animationCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 0.66044974
+      value: 0.99344903
+      inSlope: 0.07053653
+      outSlope: 0.07053653
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33041954
+    - serializedVersion: 3
+      time: 1.0123668
+      value: 0.5949142
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  _animationEndScale: 1.1
 --- !u!1 &477944540
 GameObject:
   m_ObjectHideFlags: 0
@@ -3190,6 +3320,7 @@ GameObject:
   - component: {fileID: 607220703}
   - component: {fileID: 607220702}
   - component: {fileID: 607220701}
+  - component: {fileID: 607220704}
   m_Layer: 5
   m_Name: BPOptions
   m_TagString: Untagged
@@ -3241,7 +3372,7 @@ MonoBehaviour:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
-    m_SelectedColor: {r: 0.49411765, g: 0.49411765, b: 0.49411765, a: 1}
+    m_SelectedColor: {r: 0.83137256, g: 0.83137256, b: 0.83137256, a: 1}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
@@ -3311,6 +3442,70 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 607220699}
   m_CullTransparentMesh: 1
+--- !u!114 &607220704
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 607220699}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c9297d1676c349cab0d893d666b803ea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::UIButtonFeedBack
+  _playSounds: 1
+  _acPointerEntrer:
+    _minPitch: 1
+    _maxPitch: 1
+    _volume: 0.75
+    _sounds: []
+  _acPointerExit:
+    _minPitch: 1
+    _maxPitch: 1
+    _volume: 0.75
+    _sounds: []
+  _acPointerDown:
+    _minPitch: 1
+    _maxPitch: 1
+    _volume: 0.75
+    _sounds: []
+  _playTweening: 1
+  _animationTime: 0.2
+  _animationCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 0.66044974
+      value: 0.99344903
+      inSlope: 0.07053653
+      outSlope: 0.07053653
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33041954
+    - serializedVersion: 3
+      time: 1.0123668
+      value: 0.5949142
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  _animationEndScale: 1.1
 --- !u!1 &614195018
 GameObject:
   m_ObjectHideFlags: 0
@@ -5283,6 +5478,7 @@ GameObject:
   - component: {fileID: 1120783046}
   - component: {fileID: 1120783045}
   - component: {fileID: 1120783044}
+  - component: {fileID: 1120783047}
   m_Layer: 5
   m_Name: BPLoad
   m_TagString: Untagged
@@ -5334,7 +5530,7 @@ MonoBehaviour:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
-    m_SelectedColor: {r: 0.49411765, g: 0.49411765, b: 0.49411765, a: 1}
+    m_SelectedColor: {r: 0.83137256, g: 0.83137256, b: 0.83137256, a: 1}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
@@ -5404,6 +5600,70 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1120783042}
   m_CullTransparentMesh: 1
+--- !u!114 &1120783047
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1120783042}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c9297d1676c349cab0d893d666b803ea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::UIButtonFeedBack
+  _playSounds: 1
+  _acPointerEntrer:
+    _minPitch: 1
+    _maxPitch: 1
+    _volume: 0.75
+    _sounds: []
+  _acPointerExit:
+    _minPitch: 1
+    _maxPitch: 1
+    _volume: 0.75
+    _sounds: []
+  _acPointerDown:
+    _minPitch: 1
+    _maxPitch: 1
+    _volume: 0.75
+    _sounds: []
+  _playTweening: 1
+  _animationTime: 0.2
+  _animationCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 0.66044974
+      value: 0.99344903
+      inSlope: 0.07053653
+      outSlope: 0.07053653
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33041954
+    - serializedVersion: 3
+      time: 1.0123668
+      value: 0.5949142
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  _animationEndScale: 1.1
 --- !u!1 &1150474554
 GameObject:
   m_ObjectHideFlags: 0
@@ -8831,6 +9091,7 @@ GameObject:
   - component: {fileID: 1805174993}
   - component: {fileID: 1805174992}
   - component: {fileID: 1805174991}
+  - component: {fileID: 1805174994}
   m_Layer: 5
   m_Name: BPQuitter
   m_TagString: Untagged
@@ -8882,7 +9143,7 @@ MonoBehaviour:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
-    m_SelectedColor: {r: 0.49411765, g: 0.49411765, b: 0.49411765, a: 1}
+    m_SelectedColor: {r: 0.83137256, g: 0.83137256, b: 0.83137256, a: 1}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
@@ -8952,6 +9213,70 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1805174989}
   m_CullTransparentMesh: 1
+--- !u!114 &1805174994
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1805174989}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c9297d1676c349cab0d893d666b803ea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::UIButtonFeedBack
+  _playSounds: 1
+  _acPointerEntrer:
+    _minPitch: 1
+    _maxPitch: 1
+    _volume: 0.75
+    _sounds: []
+  _acPointerExit:
+    _minPitch: 1
+    _maxPitch: 1
+    _volume: 0.75
+    _sounds: []
+  _acPointerDown:
+    _minPitch: 1
+    _maxPitch: 1
+    _volume: 0.75
+    _sounds: []
+  _playTweening: 1
+  _animationTime: 0.2
+  _animationCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 0.66044974
+      value: 0.99344903
+      inSlope: 0.07053653
+      outSlope: 0.07053653
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33041954
+    - serializedVersion: 3
+      time: 1.0123668
+      value: 0.5949142
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  _animationEndScale: 1.1
 --- !u!1 &1812882289
 GameObject:
   m_ObjectHideFlags: 0
