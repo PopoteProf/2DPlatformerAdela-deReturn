@@ -13,7 +13,12 @@ public class UITopLeftPanels : MonoBehaviour
                 _txtGold.text = StaticData.PlayerGold.ToString();
                 _txtScore.text = StaticData.PlayerScore.ToString();
         }
-        
+
+        private void OnDestroy() {
+                StaticData.OnPlayerGoldChange-= StaticDataOnOnPlayerGoldChange;
+                StaticData.OnPlayerScoreChange-= StaticDataOnOnPlayerScoreChange;
+        }
+
 
         private void StaticDataOnOnPlayerScoreChange(object sender, int e) {
                 _txtScore.text = e.ToString();
