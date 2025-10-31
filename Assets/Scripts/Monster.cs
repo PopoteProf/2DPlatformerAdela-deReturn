@@ -32,7 +32,7 @@ public class Monster : MonoBehaviour , IDamagable
     [SerializeField] private float _detectionDistance = 0.5f;
     [Space(10)] 
     [SerializeField] private bool _destroyOnDeath;
-    [SerializeField] private GameObject _prefabPSDeath;
+    [SerializeField] private GameObject[] _prefabPSDeath;
     [Space(10),Header("Debug"),SerializeField] private bool _diplayDebugGizmos;
     [SerializeField] private SpriteRenderer _leftTriggerZone, _rightTriggerZonne;
     [SerializeField] private float _damagedBumpForce = 7;
@@ -235,8 +235,17 @@ public class Monster : MonoBehaviour , IDamagable
             if (_animator)_animator.SetBool("Dead", true);
             if (_animator)_animator.SetBool("IsDamaged", false);
             this.enabled = false;
-            if (_destroyOnDeath) {
-                if (_prefabPSDeath != null) Instantiate(_prefabPSDeath, transform.position, Quaternion.identity);
+            if (_destroyOnDeath)
+            {
+                // 🔹 Instancie tous les prefabs de mort simultanément
+                if (_prefabPSDeath != null && _prefabPSDeath.Length > 0)
+                {
+                    foreach (var prefab in _prefabPSDeath)
+                    {
+                        if (prefab != null)
+                            Instantiate(prefab, transform.position, Quaternion.identity);
+                    }
+                }
                 Destroy(gameObject);
             }
             OnDeath?.Invoke(this , EventArgs.Empty);
