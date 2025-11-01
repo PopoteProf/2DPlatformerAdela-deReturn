@@ -1,25 +1,48 @@
 using UnityEngine;
+using System.Collections;
+using System.Collections.Generic;
 
 public class TriggerStarSpawner : MonoBehaviour
 {
-    public GameObject shootingStarPrefab; 
-    public Transform spawnPoint; 
+    [Header("Liste des prefabs d'étoiles filantes")]
+    public List<GameObject> shootingStarPrefabs;
 
-    private bool hasTriggered = false; 
+    [Header("Points d'apparition (optionnels)")]
+    public List<Transform> spawnPoints;
+
+    [Header("Délai entre chaque étoile (secondes)")]
+    public float spawnDelay = 0.3f;
+
+    private bool hasTriggered = false;
 
     void OnTriggerEnter2D(Collider2D other)
     {
         if (hasTriggered) return;
 
-        if (other.CompareTag("Player")) 
+        if (other.CompareTag("Player"))
         {
             hasTriggered = true;
+            StartCoroutine(SpawnStarsWithDelay());
+        }
+    }
 
-            Vector3 position = spawnPoint ? spawnPoint.position : transform.position;
-            GameObject star = Instantiate(shootingStarPrefab, position, Quaternion.identity);
+    IEnumerator SpawnStarsWithDelay()
+    {
+        int count = Mathf.Max(shootingStarPrefabs.Count, spawnPoints.Count);
+
+        for (int i = 0; i < count; i++)
+        {
+            GameObject prefab = shootingStarPrefabs[Mathf.Min(i, shootingStarPrefabs.Count - 1)];
+            Vector3 position = (i < spawnPoints.Count) ? spawnPoints[i].position : transform.position;
 
         
+            GameObject star = Instantiate(prefab, position, Quaternion.identity);
+            star.SetActive(true); 
+
+            
             Destroy(star, GetAnimationLength(star));
+
+            yield return new WaitForSeconds(spawnDelay);
         }
     }
 
