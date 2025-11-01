@@ -11,7 +11,13 @@ public class TriggerStarSpawner : MonoBehaviour
     public List<Transform> spawnPoints;
 
     [Header("Délai entre chaque étoile (secondes)")]
-    public float spawnDelay = 0.3f;
+    public float spawnDelay = 0.3f; 
+
+    [Header("Durée du fondu avant destruction (secondes)")]
+    public float fadeDuration = 1f;
+
+    [Header("Temps après la fin de l'animation avant destruction")]
+    public float postAnimationDelay = 0.2f; 
 
     private bool hasTriggered = false;
 
@@ -35,15 +41,44 @@ public class TriggerStarSpawner : MonoBehaviour
             GameObject prefab = shootingStarPrefabs[Mathf.Min(i, shootingStarPrefabs.Count - 1)];
             Vector3 position = (i < spawnPoints.Count) ? spawnPoints[i].position : transform.position;
 
-        
             GameObject star = Instantiate(prefab, position, Quaternion.identity);
-            star.SetActive(true); 
+            star.SetActive(true);
 
-            
-            Destroy(star, GetAnimationLength(star));
+            StartCoroutine(FadeAndDestroy(star));
 
             yield return new WaitForSeconds(spawnDelay);
         }
+    }
+
+    IEnumerator FadeAndDestroy(GameObject star)
+    {
+        float animLength = GetAnimationLength(star);
+        SpriteRenderer sr = star.GetComponent<SpriteRenderer>();
+
+
+        yield return new WaitForSeconds(animLength - fadeDuration + postAnimationDelay);
+
+
+        if (sr == null)
+        {
+            yield return new WaitForSeconds(fadeDuration);
+            Destroy(star);
+            yield break;
+        }
+
+   
+        float elapsed = 0f;
+        Color startColor = sr.color;
+
+        while (elapsed < fadeDuration)
+        {
+            elapsed += Time.deltaTime;
+            float alpha = Mathf.Lerp(1f, 0f, elapsed / fadeDuration);
+            sr.color = new Color(startColor.r, startColor.g, startColor.b, alpha);
+            yield return null;
+        }
+
+        Destroy(star);
     }
 
     float GetAnimationLength(GameObject star)
