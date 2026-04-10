@@ -56,5 +56,7 @@ public class UIPanelOption : MonoBehaviour
     public void OpenPanel() {
         _sliderGeneral.Select();
         gameObject.SetActive(true);
+        
     }
+    
 }
