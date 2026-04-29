@@ -6,6 +6,8 @@ public class PlayerController2D : MonoBehaviour, IDamagable
 
     [SerializeField] private float _moveSpeedPower= 10;
     [SerializeField] private float _jumpPower=10;
+    [SerializeField] private float _inuputBuffTime=0.3f;
+    [SerializeField] private float _coyoteTime = 0.3f;
     [SerializeField] private Rigidbody2D _rigidbody;
     [SerializeField] private float _moveSpeedLadder = 5;
 
@@ -23,7 +25,7 @@ public class PlayerController2D : MonoBehaviour, IDamagable
     private float _attackTime=0.8f;
     [SerializeField]private float _attackDamageDelay = 0.4f;
     [SerializeField]private SpriteRenderer _attackZoneLeft, _attackZoneRight;
-
+    [SerializeField] private float _attackGroundDamping = 1;
     [Header("Particules")]
     [SerializeField] private ParticleSystem _psWalk;
     [SerializeField] private ParticleSystem _PSDashRight;
@@ -50,6 +52,8 @@ public class PlayerController2D : MonoBehaviour, IDamagable
     private bool _flip;
     private bool _isGrounded;
     private bool _isOnLadder;
+    private float _inputBuffed;
+    private float _coyoteTimeBuffed;
 
     private void Start() {
         StaticData.OnPlayerDeath+= StaticDataOnOnPlayerDeath;
@@ -100,7 +104,15 @@ public class PlayerController2D : MonoBehaviour, IDamagable
         {
             _pSLanding.Play();
             OnLanding?.Invoke(this, EventArgs.Empty);
+            
         }
+        if (_isGrounded == false && isGrounded ) {
+            if (Time.time - _inputBuffed <= _inuputBuffTime) {
+                Jump();
+            }
+        }
+        if (_isGrounded && !isGrounded) _coyoteTimeBuffed = Time.time;
+        
         OnIsGrounded?.Invoke(this, isGrounded);
         _isGrounded = isGrounded;
     }
@@ -119,11 +131,7 @@ public class PlayerController2D : MonoBehaviour, IDamagable
     private void ManagerMove() {
         _velocity = _rigidbody.linearVelocity;
         _velocity.x = Input.GetAxisRaw("Horizontal") * _moveSpeedPower;
-        if (Input.GetKeyDown(KeyCode.UpArrow) && _isGrounded) {
-            _velocity.y += _jumpPower;
-            if(_pSJump!=null)_pSJump.Play();
-            OnJumping?.Invoke(this, EventArgs.Empty);
-        }
+        CheckForJump();
         _rigidbody.linearVelocity = _velocity;
         
         CheckFlip();
@@ -149,18 +157,33 @@ public class PlayerController2D : MonoBehaviour, IDamagable
         _isWalking = isWalking;
     }
 
-    private void ManageIsDamaged() {
-        _timer += Time.deltaTime;
-        if (_timer >= _damagedTime)
-        {
-            _isDamaged = false;
-            _timer = 0;
+    private void CheckForJump() {
+        if (Input.GetKeyDown(KeyCode.UpArrow) && _isGrounded) {
+           Jump();
+        }else if (Input.GetKeyDown(KeyCode.UpArrow) && !_isGrounded) {
+            if (Time.time-_coyoteTimeBuffed   <= _coyoteTime) Jump();
+            else{_inputBuffed = Time.time;}
+            //_inputBuffed = Time.time;
         }
-        if (_animator)_animator.SetBool("IsDamaged", _isDamaged);
-        CheckIfGrounded();
+        
     }
 
-    public void ManagerAttack() {
+    private void Jump() {
+        _velocity = _rigidbody.linearVelocity;
+        _velocity.y = _jumpPower;
+        if(_pSJump!=null)_pSJump.Play();
+        OnJumping?.Invoke(this, EventArgs.Empty);
+        _rigidbody.linearVelocity = _velocity;
+    }
+    
+    private void StartAttack() {
+        _timer = 0;
+        _isAttacking = true;
+        if (_animator)_animator.SetBool("Attack", true);
+        if (_isGrounded) _rigidbody.linearDamping = _attackGroundDamping;
+        OnAttack?.Invoke(this , EventArgs.Empty);
+    }
+    private void ManagerAttack() {
         _timer += Time.deltaTime;
         if (_timer >= _attackDamageDelay && !_hadAttack) {
             if (_diplayDebugGizmos) {
@@ -179,6 +202,7 @@ public class PlayerController2D : MonoBehaviour, IDamagable
             _timer = 0;
             _isAttacking=false;
             _hadAttack = false;
+            _rigidbody.linearDamping = 0;
             if (_animator)_animator.SetBool("Attack", false);
         }
     }
@@ -196,28 +220,28 @@ public class PlayerController2D : MonoBehaviour, IDamagable
         }
     }
 
-    public void StartAttack() {
-        _timer = 0;
-        _isAttacking = true;
-        if (_animator)_animator.SetBool("Attack", true);
-        OnAttack?.Invoke(this , EventArgs.Empty);
-    }
     
     public void TakeDamage(int damage, Vector2 origin) {
         Vector2 push = new Vector2(transform.position.x - origin.x, 1).normalized;
         _rigidbody.linearVelocity = Vector2.zero;
         _rigidbody.AddForce(push * _damagedBumpForce, ForceMode2D.Impulse);
-        //_rigidbody.velocity = push * _damagedBumpForce;
         _isDamaged = true;
         StaticData.PlayerTakeDamage(damage);
+    }
+    private void ManageIsDamaged() {
+        _timer += Time.deltaTime;
+        if (_timer >= _damagedTime) {
+            _isDamaged = false;
+            _timer = 0;
+        }
+        if (_animator)_animator.SetBool("IsDamaged", _isDamaged);
+        CheckIfGrounded();
     }
 
     public void HealPlayer(int healAmount) {
         StaticData.PlayerHeal(healAmount);
     }
-
     
-
     public void SubmitNewInteractable(Interactable interactable) {
         if (_isOnLadder) return;
         if (_currentInteractable == interactable) return;
@@ -277,6 +301,4 @@ public class PlayerController2D : MonoBehaviour, IDamagable
             Gizmos.DrawLine(transform.position, _currentLaderComponent.GetClosestPointCommand(transform.position));
         }
     }
-    
-    
 }
