@@ -24,12 +24,15 @@ public class Chess : Interactable {
     
    protected override  void OnTriggerEnter2D(Collider2D other) {
        base.OnTriggerEnter2D(other);
-           if(_interactFeedBack!=null) _interactFeedBack.OpenUpEffect();
-       
+       if (other.gameObject.GetComponent<PlayerController2D>() != null) {
+           if (_interactFeedBack != null && !_isOpen) _interactFeedBack.OpenUpEffect();
+       }
+
    }
     protected override void OnTriggerExit2D(Collider2D other) {
         base.OnTriggerEnter2D(other);
-            if(_interactFeedBack!=null) _interactFeedBack.CloseUpEffect();
-        
+        if (other.gameObject.GetComponent<PlayerController2D>() != null) {
+            if (_interactFeedBack != null) _interactFeedBack.CloseUpEffect();
+        }
     }
 }
