@@ -22,18 +22,14 @@ public class Chess : Interactable {
     }
     
     
-    //protected override  void OnTriggerEnter2D(Collider2D other) {
-    //    if (_isInteractable) return;
-    //    if (other.gameObject.GetComponent<PlayerController2D>() != null) {
-    //        other.gameObject.GetComponent<PlayerController2D>().Chess = this;
-    //        if(_interactFeedBack!=null) _interactFeedBack.OpenUpEffect();
-    //    }
-    //}
-    //protected override void OnTriggerExit2D(Collider2D other) {
-    //    if (_isInteractable) return;
-    //    if (other.gameObject.GetComponent<PlayerController2D>() != null) {
-    //        other.gameObject.GetComponent<PlayerController2D>().Chess = this;
-    //        if(_interactFeedBack!=null) _interactFeedBack.CloseUpEffect();
-    //    }
-    //}
+   protected override  void OnTriggerEnter2D(Collider2D other) {
+       base.OnTriggerEnter2D(other);
+           if(_interactFeedBack!=null) _interactFeedBack.OpenUpEffect();
+       
+   }
+    protected override void OnTriggerExit2D(Collider2D other) {
+        base.OnTriggerEnter2D(other);
+            if(_interactFeedBack!=null) _interactFeedBack.CloseUpEffect();
+        
+    }
 }
