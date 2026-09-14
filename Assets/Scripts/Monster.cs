@@ -214,6 +214,11 @@ public class Monster : MonoBehaviour , IDamagable {
         
     }
 
+    public void Kill() {
+        _hp = 0;
+        Death();
+    }
+
     private void Death() {
         if (_animator)_animator.SetBool("Dead", true);
         if (_animator)_animator.SetBool("IsDamaged", false);

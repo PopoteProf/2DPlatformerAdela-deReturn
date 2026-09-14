@@ -47,4 +47,7 @@ public static class StaticData
         PlayerGold += change;
         OnPlayerGoldChange?.Invoke(null, PlayerGold);
     }
+
+    public static void KillPlayer() => PlayerTakeDamage(PlayerHP);
+    
 }

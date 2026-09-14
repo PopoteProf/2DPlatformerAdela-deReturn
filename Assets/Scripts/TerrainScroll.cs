@@ -4,13 +4,20 @@ using UnityEngine;
 [ExecuteInEditMode]
 public class TerrainScroll : MonoBehaviour
 {
-    [SerializeField] private Transform _ref;
+    [SerializeField, Tooltip(" Prevent the scrolling when the player Die. Have to be change before entering play mode"
+         )] private bool _StopScrollOnDeath = true; 
+    [SerializeField,Tooltip("Target that is use to calculate scrolling amout, generaly the playerCharacter"
+         )] private Transform _ref;
     [SerializeField] private TerrainGroup[] _terraingroup;
+    
     
     [Space(10)] 
     [Header("Debug")]
-    [SerializeField] private bool _updateInEditor;
+    [SerializeField, Tooltip("Allow the scrolling to happen in Editor, perfect for the level design"
+         )] private bool _updateInEditor;
 
+    
+    
     
     public void Update() {
 #if UNITY_EDITOR
@@ -33,6 +40,12 @@ public class TerrainScroll : MonoBehaviour
                 transform.position = Vector3.zero;
                 
             }
+        }
+    }
+
+    private void Start() {
+        if (_StopScrollOnDeath) {
+            StaticData.OnPlayerDeath += (sender, args) => enabled = false;
         }
     }
 

@@ -1,17 +1,23 @@
 ﻿using System;
-using System.Runtime.CompilerServices;
 using DG.Tweening;
-using UnityEditor;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class UIDeathPanel : MonoBehaviour {
     [SerializeField] private CanvasGroup _canvasGroup;
     [SerializeField] private float _fadeInTime = 2;
 
+    [SerializeField] private Button _bpMainMenu;
+    [SerializeField] private Button _bpRestart;
+
     private void Start() {
         StaticData.OnPlayerDeath+= StaticDataOnOnPlayerDeath;
         _canvasGroup.alpha = 0;
         gameObject.SetActive(false);
+        
+        _bpMainMenu.onClick.AddListener(UIClickOnMainMenu);
+        _bpRestart.onClick.AddListener(UIClickOnRestart);
     }
 
     private void OnDestroy() {
@@ -22,4 +28,8 @@ public class UIDeathPanel : MonoBehaviour {
         gameObject.SetActive(true);
         _canvasGroup.DOFade(1, _fadeInTime);
     }
+
+    private void UIClickOnMainMenu()=> SceneManager.LoadScene(0);
+    private void UIClickOnRestart() => SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    
 }
