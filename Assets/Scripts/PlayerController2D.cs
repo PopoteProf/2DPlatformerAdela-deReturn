@@ -1,9 +1,10 @@
 using System;
 using UnityEngine;
 
+[SelectionBase]
 public class PlayerController2D : MonoBehaviour, IDamagable
 {
-
+    
     [SerializeField] private float _moveSpeedPower= 10;
     [SerializeField] private float _jumpPower=10;
     [SerializeField] private float _inuputBuffTime=0.3f;

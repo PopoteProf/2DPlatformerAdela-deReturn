@@ -1,8 +1,7 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
+[SelectionBase]
 public class Monster : MonoBehaviour , IDamagable {
     [SerializeField] private MonsterStat _monsterStat;
     [SerializeField] private Rigidbody2D _rigidbody;

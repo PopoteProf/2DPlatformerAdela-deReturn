@@ -1,5 +1,6 @@
 using UnityEngine;
 
+[SelectionBase]
 public class Chess : Interactable {
     [SerializeField] private Animator _animator;
     [SerializeField] private bool _isOpen;
