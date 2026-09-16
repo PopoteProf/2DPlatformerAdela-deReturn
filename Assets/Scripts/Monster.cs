@@ -1,4 +1,5 @@
 using System;
+using DG.Tweening;
 using UnityEngine;
 
 [SelectionBase]
@@ -224,7 +225,7 @@ public class Monster : MonoBehaviour , IDamagable {
         enabled = false;
         if (_destroyOnDeath) {
             if (_prefabPSDeath != null) Instantiate(_prefabPSDeath, transform.position, Quaternion.identity);
-            Destroy(gameObject);
+            DOTween.Sequence().AppendInterval(0.5f).OnComplete(() => Destroy(gameObject));
         }
         else {
             gameObject.layer = LayerMask.NameToLayer(_deathLayerMask);

@@ -19,6 +19,7 @@ public class Chess : Interactable {
         StaticData.ChangePlayerGold(_goldGain);
         if(_interactFeedBack!=null) _interactFeedBack.DoInteractEffect();
         _isOpen = true;
+        Debug.Log("opening chest, apparently");
         enabled = false;
     }
     
