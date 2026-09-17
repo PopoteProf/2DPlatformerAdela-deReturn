@@ -12,6 +12,6 @@ public class DeathTriggerZone : MonoBehaviour
         if (_usTagToTrigger && !_triggerTag.Contains(other.tag)) return;
         _onTriggerEnter?.Invoke();
         if (other.CompareTag("Player")) StaticData.KillPlayer();
-        if( other.CompareTag("Monster")) other.GetComponent<Monster>().Kill();
+        if( other.CompareTag("Monsters")) other.GetComponent<Monster>().Kill();
     }
 }
