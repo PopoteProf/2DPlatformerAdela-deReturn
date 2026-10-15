@@ -71,7 +71,7 @@ public class TestButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
 
             _sequence.Join(_rt.DORotate(_startingRotation, _startingAnimationLenght).SetEase(_startingAnimationCurve));
             
-            _sequence.Join(_rt.DOSizeDelta(_rt.sizeDelta * _startingAnimationEndScale, _startingAnimationLenght).SetEase(_startingAnimationCurve).OnComplete(AfterStartAnimation));
+            _sequence.Join(_rt.DOSizeDelta(_startingAnimationEndScale, _startingAnimationLenght).SetEase(_startingAnimationCurve).OnComplete(AfterStartAnimation));
         }
         else
             AfterStartAnimation();
@@ -121,12 +121,12 @@ public class TestButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
         _sequence.Join(_rt.DORotate(_animationRotation, _animationLenght, RotateMode.FastBeyond360).SetEase(_startingAnimationCurve));
         //_sequence.Join(_rt.DOPunchRotation(_animationRotation, _startingAnimationLenght).SetEase(_startingAnimationCurve));
 
-        //voir pour modifier le pixel   per unit multiplier pour remplacer le size delta qui marche pas avec différentes résolutions
-        //_sequence.Join(transform.DOScale(_animationEndScale, _animationLenght).SetEase(_animationCurve);
+
+        _sequence.Join(_rt.DOShakeRotation(1, new Vector3(0,0,_shakeDistance * 45), _shakeStrength));
 
         //DOTween.To(() => aa, x => aa = _animationEndScale, _animationLenght).SetEase(_animationCurve);
         
-        _sequence.Join(_rt.DOSizeDelta(_startScale * _animationEndScale, _animationLenght).SetEase(_animationCurve));
+        _sequence.Join(_rt.DOSizeDelta(_animationEndScale, _animationLenght).SetEase(_animationCurve));
     }
 
     public void OnPointerExit(PointerEventData eventData)
@@ -141,7 +141,7 @@ public class TestButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
         _sequence.Join(_rt.DOPivot(_startPivotPoint, _animationLenght).SetEase(_animationCurve));
         
         
-        _sequence.Join(_rt.DORotate(_startRotation, _animationLenght, RotateMode.FastBeyond360).SetEase(_startingAnimationCurve));
+        _sequence.Join(_rt.DORotate(_startRotation, _animationLenght).SetEase(_startingAnimationCurve));
         
         _sequence.Join(_rt.DOSizeDelta(_startScale, _animationLenght).SetEase(_animationCurve));
     }

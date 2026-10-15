@@ -904,6 +904,7 @@ GameObject:
   - component: {fileID: 65384647}
   - component: {fileID: 65384649}
   - component: {fileID: 65384648}
+  - component: {fileID: 65384650}
   m_Layer: 5
   m_Name: Panel
   m_TagString: Untagged
@@ -969,6 +970,82 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 65384646}
   m_CullTransparentMesh: 1
+--- !u!114 &65384650
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 65384646}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a1e0f3923a59b164f8829f15a5e3f2b8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::TestButton
+  _startingAnimation: 1
+  _shaking: 0
+  _shakeStrength: 0
+  _shakeDistance: 0
+  _startingAnimationEndPos: {x: 0.5, y: -0.5}
+  _startingAnimationEndScale: {x: 100, y: 100}
+  _startingRotation: {x: 0, y: 0, z: 0}
+  _startingPivotPoint: {x: 0.5, y: 0.5}
+  _startingAnimationLenght: 1
+  _startingAnimationCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  _animation: 0
+  _animationEndPos: {x: 0, y: 0}
+  _animationEndScale: {x: 0, y: 0}
+  _animationRotation: {x: 0, y: 0, z: 0}
+  _pivotPoint: {x: 0.5, y: 0.5}
+  _animationLenght: 0
+  _mouseDelay: 0
+  _animationCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &71007722
 GameObject:
   m_ObjectHideFlags: 0
@@ -24554,7 +24631,7 @@ Tilemap:
       - {fileID: -356566473, guid: 82ec6c4d28bc9334983ea277d1ee1c75, type: 3}
       - {fileID: -93379922, guid: 82ec6c4d28bc9334983ea277d1ee1c75, type: 3}
       - {fileID: -1727991074, guid: 82ec6c4d28bc9334983ea277d1ee1c75, type: 3}
-      m_AnimationSpeed: 10
+      m_AnimationSpeed: 10.000001
       m_AnimationTimeOffset: 0
       m_Flags: 0
   - first: {x: 118, y: 55, z: 0}
@@ -63539,8 +63616,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: '::'
   _startingAnimation: 0
+  _shaking: 0
+  _shakeStrength: 2
+  _shakeDistance: 5
   _startingAnimationEndPos: {x: 0.4, y: 0.2}
-  _startingAnimationEndScale: {x: 100, y: 200}
+  _startingAnimationEndScale: {x: 0.1, y: 0.1}
   _startingRotation: {x: 0, y: 0, z: 0}
   _startingPivotPoint: {x: 0.5, y: 0.5}
   _startingAnimationLenght: 1
@@ -63570,7 +63650,7 @@ MonoBehaviour:
     m_RotationOrder: 4
   _animation: 1
   _animationEndPos: {x: 0, y: 0}
-  _animationEndScale: {x: 1, y: 1}
+  _animationEndScale: {x: 200, y: 200}
   _animationRotation: {x: 0, y: 0, z: 0}
   _pivotPoint: {x: 0.5, y: 0.5}
   _animationLenght: 5
