@@ -1,5 +1,10 @@
 using System;
+using System.Numerics;
+using Cinemachine;
 using UnityEngine;
+using Quaternion = UnityEngine.Quaternion;
+using Vector2 = UnityEngine.Vector2;
+using Vector3 = UnityEngine.Vector3;
 
 [SelectionBase]
 public class PlayerController2D : MonoBehaviour, IDamagable
@@ -34,8 +39,10 @@ public class PlayerController2D : MonoBehaviour, IDamagable
     [SerializeField] private ParticleSystem _pSJump;
     [SerializeField] private ParticleSystem _pSLanding;
     [SerializeField] private ParticleSystem _pSHit;
+    [SerializeField] private NoiseSettings _noiseSettings;
     private Interactable _currentInteractable;
     private LaderComponent _currentLaderComponent;
+    private CinemachineImpulseSource _impulseSource;
 
     public event EventHandler OnLanding;
     public event EventHandler OnJumping;
@@ -59,6 +66,7 @@ public class PlayerController2D : MonoBehaviour, IDamagable
     private void Start() {
         StaticData.OnPlayerDeath+= StaticDataOnOnPlayerDeath;
         StaticData.ResetData();
+        _impulseSource = GetComponent<CinemachineImpulseSource>();
         
     }
 
@@ -208,6 +216,7 @@ public class PlayerController2D : MonoBehaviour, IDamagable
         }
     }
     private void DoAttackDamage() {
+        _impulseSource.m_ImpulseDefinition.CreateAndReturnEvent(Vector3.zero, Vector3.up);
         Collider2D[] cols = new Collider2D[0];
         if (_flip) cols =Physics2D.OverlapBoxAll(_attackZoneLeft.transform.position, new Vector2(1,2), 0);
         else cols =Physics2D.OverlapBoxAll(_attackZoneRight.transform.position, new Vector2(1,2), 0);
@@ -222,7 +231,9 @@ public class PlayerController2D : MonoBehaviour, IDamagable
     }
 
     
-    public void TakeDamage(int damage, Vector2 origin) {
+    public void TakeDamage(int damage, Vector2 origin)
+    { 
+        _impulseSource.m_ImpulseDefinition.CreateAndReturnEvent(Vector3.zero, Vector3.up);
         Vector2 push = new Vector2(transform.position.x - origin.x, 1).normalized;
         _rigidbody.linearVelocity = Vector2.zero;
         _rigidbody.AddForce(push * _damagedBumpForce, ForceMode2D.Impulse);
