@@ -10,6 +10,8 @@ public class UITopLeftPanels : MonoBehaviour
         private void Start() {
                 StaticData.OnPlayerGoldChange+= StaticDataOnOnPlayerGoldChange;
                 StaticData.OnPlayerScoreChange+= StaticDataOnOnPlayerScoreChange;
+                Debug.Log(gameObject.name);
+                Debug.Log(_txtGold.text);
                 _txtGold.text = StaticData.PlayerGold.ToString();
                 _txtScore.text = StaticData.PlayerScore.ToString();
         }

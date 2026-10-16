@@ -1,4 +1,5 @@
 using System;
+using Unity.Cinemachine;
 using UnityEngine;
 
 [SelectionBase]
@@ -34,6 +35,11 @@ public class PlayerController2D : MonoBehaviour, IDamagable
     [SerializeField] private ParticleSystem _pSJump;
     [SerializeField] private ParticleSystem _pSLanding;
     [SerializeField] private ParticleSystem _pSHit;
+
+    [Header("Cinemachine")] 
+    [SerializeField] private CinemachineImpulseSource _playerHitImpulse;
+    [SerializeField] private CinemachineImpulseSource _playerAttackImpulse;
+    
     private Interactable _currentInteractable;
     private LaderComponent _currentLaderComponent;
 
@@ -215,6 +221,8 @@ public class PlayerController2D : MonoBehaviour, IDamagable
             if (col.transform.GetComponent<IDamagable>()!=null) {
                 if (col.gameObject == gameObject) return;
                 col.transform.GetComponent<IDamagable>().TakeDamage(1, transform.position);
+                
+                _playerAttackImpulse.GenerateImpulse(); // Generate hit impulse
 
                 if (_pSHit != null) Instantiate(_pSHit, ( col.transform.position) , Quaternion.identity);
             }
@@ -227,6 +235,8 @@ public class PlayerController2D : MonoBehaviour, IDamagable
         _rigidbody.linearVelocity = Vector2.zero;
         _rigidbody.AddForce(push * _damagedBumpForce, ForceMode2D.Impulse);
         _isDamaged = true;
+        _playerHitImpulse.GenerateImpulse();
+        
         StaticData.PlayerTakeDamage(damage);
     }
     private void ManageIsDamaged() {
