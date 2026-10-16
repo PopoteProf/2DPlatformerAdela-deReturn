@@ -1,12 +1,12 @@
 ﻿using System;
-using Cinemachine;
+using Unity.Cinemachine;
 using UnityEngine;
 
-[RequireComponent(typeof(CinemachineVirtualCamera))]
+[RequireComponent(typeof(CinemachineCamera))]
 public class CameraOnDeath : MonoBehaviour {
-    [SerializeField]private CinemachineVirtualCamera _vcam;
+    [SerializeField]private CinemachineCamera _vcam;
     private void  Awake() {
-        _vcam = GetComponent<CinemachineVirtualCamera>();
+        _vcam = GetComponent<CinemachineCamera>();
         StaticData.OnPlayerDeath += StaticDataOnOnPlayerDeath;
     }
 

@@ -1,4 +1,5 @@
 using System;
+using Unity.Cinemachine;
 using UnityEngine;
 
 [SelectionBase]
@@ -11,6 +12,7 @@ public class PlayerController2D : MonoBehaviour, IDamagable
     [SerializeField] private float _coyoteTime = 0.3f;
     [SerializeField] private Rigidbody2D _rigidbody;
     [SerializeField] private float _moveSpeedLadder = 5;
+    public CinemachineImpulseSource _camera;
 
     [Space(5)] 
     [SerializeField] private bool _SpriteIsFlip;
@@ -217,6 +219,7 @@ public class PlayerController2D : MonoBehaviour, IDamagable
                 col.transform.GetComponent<IDamagable>().TakeDamage(1, transform.position);
 
                 if (_pSHit != null) Instantiate(_pSHit, ( col.transform.position) , Quaternion.identity);
+                _camera.GenerateImpulse();
             }
         }
     }
@@ -228,6 +231,7 @@ public class PlayerController2D : MonoBehaviour, IDamagable
         _rigidbody.AddForce(push * _damagedBumpForce, ForceMode2D.Impulse);
         _isDamaged = true;
         StaticData.PlayerTakeDamage(damage);
+        _camera.GenerateImpulse();
     }
     private void ManageIsDamaged() {
         _timer += Time.deltaTime;
