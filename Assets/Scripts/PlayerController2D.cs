@@ -1,9 +1,12 @@
 using System;
+using Unity.Cinemachine;
 using UnityEngine;
 
 [SelectionBase]
 public class PlayerController2D : MonoBehaviour, IDamagable
 {
+    [SerializeField] private CinemachineImpulseSource _damageSource;
+    [SerializeField] private CinemachineImpulseSource _damagedSource;
     
     [SerializeField] private float _moveSpeedPower= 10;
     [SerializeField] private float _jumpPower=10;
@@ -207,22 +210,31 @@ public class PlayerController2D : MonoBehaviour, IDamagable
             if (_animator)_animator.SetBool("Attack", false);
         }
     }
-    private void DoAttackDamage() {
+    private void DoAttackDamage()
+    {
+        
+        
         Collider2D[] cols = new Collider2D[0];
         if (_flip) cols =Physics2D.OverlapBoxAll(_attackZoneLeft.transform.position, new Vector2(1,2), 0);
         else cols =Physics2D.OverlapBoxAll(_attackZoneRight.transform.position, new Vector2(1,2), 0);
         foreach (var col in cols) {
+
             if (col.transform.GetComponent<IDamagable>()!=null) {
                 if (col.gameObject == gameObject) return;
                 col.transform.GetComponent<IDamagable>().TakeDamage(1, transform.position);
 
                 if (_pSHit != null) Instantiate(_pSHit, ( col.transform.position) , Quaternion.identity);
+                //_damageSource.GenerateImpulse();
+                Debug.Log("Hit");
             }
         }
     }
 
     
     public void TakeDamage(int damage, Vector2 origin) {
+        Debug.Log("Damaged");
+        //_damagedSource.GenerateImpulse();
+        
         Vector2 push = new Vector2(transform.position.x - origin.x, 1).normalized;
         _rigidbody.linearVelocity = Vector2.zero;
         _rigidbody.AddForce(push * _damagedBumpForce, ForceMode2D.Impulse);
