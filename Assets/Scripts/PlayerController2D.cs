@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using Unity.Cinemachine;
 
 [SelectionBase]
 public class PlayerController2D : MonoBehaviour, IDamagable
@@ -43,6 +44,7 @@ public class PlayerController2D : MonoBehaviour, IDamagable
     public event EventHandler<bool> OnWalking;
     public event EventHandler<bool> OnIsGrounded;
 
+    public CinemachineImpulseSource ImpulseSource;
 
     private float _timer;
     private bool _isDamaged;
@@ -217,6 +219,7 @@ public class PlayerController2D : MonoBehaviour, IDamagable
                 col.transform.GetComponent<IDamagable>().TakeDamage(1, transform.position);
 
                 if (_pSHit != null) Instantiate(_pSHit, ( col.transform.position) , Quaternion.identity);
+                ImpulseSource.GenerateImpulse();
             }
         }
     }
@@ -228,6 +231,7 @@ public class PlayerController2D : MonoBehaviour, IDamagable
         _rigidbody.AddForce(push * _damagedBumpForce, ForceMode2D.Impulse);
         _isDamaged = true;
         StaticData.PlayerTakeDamage(damage);
+        ImpulseSource.GenerateImpulse();
     }
     private void ManageIsDamaged() {
         _timer += Time.deltaTime;
