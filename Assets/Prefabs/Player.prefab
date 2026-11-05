@@ -1,85 +1,5 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &5604696290190854571
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 153794755487239588}
-  - component: {fileID: 6561437610473987478}
-  - component: {fileID: 5631640624301044934}
-  m_Layer: 0
-  m_Name: AudioPart
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &153794755487239588
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5604696290190854571}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 16.32824, y: 4.62918, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 8011071985559387317}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!81 &6561437610473987478
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5604696290190854571}
-  m_Enabled: 1
---- !u!114 &5631640624301044934
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5604696290190854571}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e45c57a8c04149649ace187c97d641d6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::AudioPlayerEffects
-  _playerController2D: {fileID: 8011071985559387315}
-  _mixerGroup: {fileID: 5956370005326552125, guid: 7d77b744e3c45c8479bac064c548c9a8, type: 2}
-  _SFXLanding:
-    _minPitch: 1
-    _maxPitch: 1
-    _volume: 0.75
-    _sounds:
-    - {fileID: 8300000, guid: eaae8fe8d600e1f459f34aa5757fa3b8, type: 3}
-  _SFXJimping:
-    _minPitch: 1
-    _maxPitch: 1
-    _volume: 0.75
-    _sounds:
-    - {fileID: 8300000, guid: 4e349dc959014a845b9aa317d1c2b7f0, type: 3}
-  _SFXAttacking:
-    _minPitch: 1
-    _maxPitch: 1
-    _volume: 0.75
-    _sounds:
-    - {fileID: 8300000, guid: f11db4559b3ffff45b62e9327fc5535d, type: 3}
-  _foodStepDelay: 0.3
-  _SFXFootStep:
-    _minPitch: 0.54
-    _maxPitch: 1.29
-    _volume: 0.75
-    _sounds:
-    - {fileID: 8300000, guid: df7087e4d8a8bb546bc08ce68632903f, type: 3}
 --- !u!1 &8011071984764523117
 GameObject:
   m_ObjectHideFlags: 0
@@ -207,7 +127,6 @@ Transform:
   - {fileID: 8011071986152297291}
   - {fileID: 8011071985903981704}
   - {fileID: 8011071984764523116}
-  - {fileID: 153794755487239588}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &8011071985559387318
@@ -307,7 +226,7 @@ MonoBehaviour:
   _pSDashLeft: {fileID: 0}
   _pSJump: {fileID: 0}
   _pSLanding: {fileID: 0}
-  _pSHit: {fileID: 1544562717885713336, guid: 586c375c59314f0499925b68f0ab788f, type: 3}
+  _pSHit: {fileID: 0}
 --- !u!50 &8011071985559387319
 Rigidbody2D:
   serializedVersion: 5
