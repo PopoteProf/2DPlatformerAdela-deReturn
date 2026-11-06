@@ -19,20 +19,30 @@ public class UIAudioSliders : MonoBehaviour
         _sliderAmbiance.onValueChanged.AddListener( ChangeAmbianceValue);
         _sliderSfx.onValueChanged.AddListener(ChangeSfxValue);
 
-        
+        float volume;
+        if (_audioMixer.GetFloat("VolumeMaster", out volume)) _sliderGeneral.value = DecibelToNormalized(volume);
+        if (_audioMixer.GetFloat("VolumeMusic", out volume)) _sliderMusic.value = DecibelToNormalized(volume);
+        if (_audioMixer.GetFloat("VolumeAmbiance", out volume)) _sliderAmbiance.value = DecibelToNormalized(volume);
+        if (_audioMixer.GetFloat("VolumeSFX", out volume)) _sliderSfx.value = DecibelToNormalized(volume);
     }
 
     private void ChangeGenrealValue(float value)
     { 
-       
+       _audioMixer.SetFloat("VolumeMaster", NormalizedToDecibel(value));
     }
     private void ChangeMusicValue(float value) {
-        
+        _audioMixer.SetFloat("VolumeMusic", NormalizedToDecibel(value));
     }
     private void ChangeAmbianceValue(float value) {
-        
+        _audioMixer.SetFloat("VolumeAmbiance", NormalizedToDecibel(value));
+
     }
     private void ChangeSfxValue(float value) {
-        
+        _audioMixer.SetFloat("VolumeSFX", NormalizedToDecibel(value));
+
     }
+
+    private float DecibelToNormalized(float decibel) => Mathf.Pow(10, decibel / 20);
+    
+    private float NormalizedToDecibel(float normalized) => Mathf.Log10(normalized) * 20;
 }

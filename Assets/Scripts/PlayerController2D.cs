@@ -56,6 +56,9 @@ public class PlayerController2D : MonoBehaviour, IDamagable
     private float _inputBuffed;
     private float _coyoteTimeBuffed;
 
+    public bool IsGrounded => _isGrounded;
+    public bool IsWalking => _isWalking;
+
     private void Start() {
         StaticData.OnPlayerDeath+= StaticDataOnOnPlayerDeath;
         StaticData.ResetData();
