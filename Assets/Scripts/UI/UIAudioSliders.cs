@@ -20,7 +20,14 @@ namespace UI
             _sliderAmbiance.onValueChanged.AddListener( ChangeAmbianceValue);
             _sliderSfx.onValueChanged.AddListener(ChangeSfxValue);
             
-            //_sliderGeneral.value = Mathf.Pow(10, _audioMixer.GetFloat("Master", _audioMixer))
+            _audioMixer.GetFloat("Master" ,out float masterVolume);
+            _sliderGeneral.SetValueWithoutNotify(Mathf.Pow(10, masterVolume/20));
+            _audioMixer.GetFloat("Music" ,out float musicVolume);
+            _sliderMusic.SetValueWithoutNotify(Mathf.Pow(10, musicVolume/20));
+            _audioMixer.GetFloat("Ambiance" ,out float ambianceVolume);
+            _sliderAmbiance.SetValueWithoutNotify(Mathf.Pow(10, ambianceVolume/20));
+            _audioMixer.GetFloat("SFX" ,out float sfxVolume);
+            _sliderSfx.SetValueWithoutNotify(Mathf.Pow(10, sfxVolume/20));
         }
 
         private void ChangeGenrealValue(float value) {
