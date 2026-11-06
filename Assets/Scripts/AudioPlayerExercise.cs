@@ -5,6 +5,9 @@ using UnityEngine.Audio;
 public class AudioPlayerExercise : MonoBehaviour {
     
     public PlayerController2D _playerController2D;
+    [SerializeField] private AudioSource _attackSound;
+    [SerializeField] private AudioSource _jumpSound;
+    [SerializeField] private AudioSource _landingSound;
     
     void Start() {
         _playerController2D.OnLanding+= PlayerController2DOnOnLanding;
@@ -20,16 +23,17 @@ public class AudioPlayerExercise : MonoBehaviour {
     private void PlayerController2DOnOnWalking(object sender, bool isWalking) {
     }
 
-    private void PlayerController2DOnOnAttack(object sender, EventArgs e) {
-        
+    private void PlayerController2DOnOnAttack(object sender, EventArgs e)
+    {
+        _attackSound.Play();
     }
 
     private void PlayerController2DOnOnJumping(object sender, EventArgs e) {
-       
+       _jumpSound.Play();
     }
 
     private void PlayerController2DOnOnLanding(object sender, EventArgs e) {
-        
+        _landingSound.Play();
     }
     
 }
