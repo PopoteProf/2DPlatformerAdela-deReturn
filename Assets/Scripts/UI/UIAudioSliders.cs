@@ -29,18 +29,18 @@ public class UIAudioSliders : MonoBehaviour
 
     private void ChangeGenrealValue(float value)
     {
-        _audioMixer.SetFloat("VolumeMaster", value == 0 ? 0 : Mathf.Log(value) * 20);
+        _audioMixer.SetFloat("VolumeMaster", value == 0 ? -80 : Mathf.Log(value) * 20);
     }
     private void ChangeMusicValue(float value) {
-        _audioMixer.SetFloat("VolumeMusic", value == 0 ? 0 : Mathf.Log(value) * 20);
+        _audioMixer.SetFloat("VolumeMusic", value == 0 ? -80 : Mathf.Log(value) * 20);
         
     }
     private void ChangeAmbianceValue(float value) {
-        _audioMixer.SetFloat("VolumeAmbiance", value == 0 ? 0 : Mathf.Log(value) * 20);
+        _audioMixer.SetFloat("VolumeAmbiance", value == 0 ? -80 : Mathf.Log(value) * 20);
         
     }
     private void ChangeSfxValue(float value) {
-        _audioMixer.SetFloat("VolumeSFX", value == 0 ? 0 : Mathf.Log(value) * 20);
+        _audioMixer.SetFloat("VolumeSFX", value == 0 ? -80 : Mathf.Log(value) * 20);
         
     }
 }

@@ -8,6 +8,7 @@ public class PichUpItem : MonoBehaviour {
     [SerializeField] private bool _destroyOnPickUp = true;
     [SerializeField] private GameObject _prfSpawnOnPickUp;
     [SerializeField] private UnityEvent _OnPickUp;
+    [SerializeField] private AudioClip _audioClip;
 
     private void OnTriggerEnter2D(Collider2D other) {
         if (other.transform.CompareTag("Player")) {
@@ -17,6 +18,7 @@ public class PichUpItem : MonoBehaviour {
                 if (_prfSpawnOnPickUp!=null)Instantiate(_prfSpawnOnPickUp, transform.position, Quaternion.identity);
                 Destroy(gameObject);
             }
+            if (_audioClip) AudioManager.PlaySfx(_audioClip);
             _OnPickUp.Invoke();
         }
     }
