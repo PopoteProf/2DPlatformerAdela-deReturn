@@ -12,6 +12,7 @@ public class Chess : Interactable {
     public override void Interact()
     {
         base.Interact();
+        _audioSource.Play();
         if (_isOpen) return;
         _animator.SetBool("Open", true);
         if (_psCoindUp != null) _psCoindUp.Play();
