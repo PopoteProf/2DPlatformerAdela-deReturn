@@ -8,12 +8,16 @@ public class Chess : Interactable {
     [SerializeField] private AudioSource _audioSource;
     [SerializeField] private int _goldGain = 5;
     [SerializeField] private UIInteractFeedBack _interactFeedBack;
+     private AudioSource myaudioSource;
 
     public override void Interact()
     {
+        
         base.Interact();
         if (_isOpen) return;
         _animator.SetBool("Open", true);
+        myaudioSource = GetComponent<AudioSource>();
+        myaudioSource.Play();
         if (_psCoindUp != null) _psCoindUp.Play();
         if( _audioSource!=null) _audioSource.Play();
         StaticData.ChangePlayerGold(_goldGain);

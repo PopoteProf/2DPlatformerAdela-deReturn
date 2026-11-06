@@ -11,10 +11,11 @@ public class UIAudioSliders : MonoBehaviour
     [SerializeField] private Slider _sliderAmbiance;
     [SerializeField] private Slider _sliderSfx;
     [SerializeField] private AudioMixer _audioMixer;
+    private float _volume;
 
     private void Awake()
     {
-        _sliderGeneral.onValueChanged.AddListener(ChangeGenrealValue);
+        _sliderGeneral.onValueChanged.AddListener(ChangeGeneralValue);
         _sliderMusic.onValueChanged.AddListener(ChangeMusicValue);
         _sliderAmbiance.onValueChanged.AddListener( ChangeAmbianceValue);
         _sliderSfx.onValueChanged.AddListener(ChangeSfxValue);
@@ -22,17 +23,20 @@ public class UIAudioSliders : MonoBehaviour
         
     }
 
-    private void ChangeGenrealValue(float value)
-    { 
-       
+    private void ChangeGeneralValue(float value)
+    {
+        _audioMixer.SetFloat("VolumeMaster", Mathf.Log10(value)* 20);
     }
-    private void ChangeMusicValue(float value) {
-        
+    private void ChangeMusicValue(float value) 
+    {
+        _audioMixer.SetFloat("VolumeMusic", Mathf.Log10(value)* 20);
     }
-    private void ChangeAmbianceValue(float value) {
-        
+    private void ChangeAmbianceValue(float value) 
+    {
+        _audioMixer.SetFloat("VolumeAmbiance", Mathf.Log10(value)* 20);
     }
-    private void ChangeSfxValue(float value) {
-        
+    private void ChangeSfxValue(float value) 
+    {
+        _audioMixer.SetFloat("VolumeSFX", Mathf.Log10(value)* 20);
     }
 }
