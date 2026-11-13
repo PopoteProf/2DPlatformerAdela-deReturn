@@ -1079,6 +1079,11 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
+--- !u!1 &72466961 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4365544514077676721, guid: 0564be6f61728634eb1e8cf470f8f707, type: 3}
+  m_PrefabInstance: {fileID: 1973278766130647635}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &78394795
 GameObject:
   m_ObjectHideFlags: 0
@@ -20247,7 +20252,7 @@ Tilemap:
       - {fileID: -1022845155, guid: cf47e37aee38de14194c30507d5ee1b3, type: 3}
       - {fileID: -715993590, guid: cf47e37aee38de14194c30507d5ee1b3, type: 3}
       - {fileID: -1219690201, guid: cf47e37aee38de14194c30507d5ee1b3, type: 3}
-      m_AnimationSpeed: 10.000001
+      m_AnimationSpeed: 10
       m_AnimationTimeOffset: 0
       m_Flags: 0
   - first: {x: 9, y: -3, z: 0}
@@ -80458,13 +80463,41 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4267172152303705233, guid: 0564be6f61728634eb1e8cf470f8f707, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4267172152303705233, guid: 0564be6f61728634eb1e8cf470f8f707, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 4267172152303705233, guid: 0564be6f61728634eb1e8cf470f8f707, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 72466961}
+    - target: {fileID: 4267172152303705233, guid: 0564be6f61728634eb1e8cf470f8f707, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4267172152303705233, guid: 0564be6f61728634eb1e8cf470f8f707, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: SetActive
+      objectReference: {fileID: 0}
+    - target: {fileID: 4267172152303705233, guid: 0564be6f61728634eb1e8cf470f8f707, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: UnityEngine.GameObject, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 4267172152303705233, guid: 0564be6f61728634eb1e8cf470f8f707, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 4365544514077676721, guid: 0564be6f61728634eb1e8cf470f8f707, type: 3}
       propertyPath: m_Name
       value: Canvas
       objectReference: {fileID: 0}
     - target: {fileID: 4365544514077676721, guid: 0564be6f61728634eb1e8cf470f8f707, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
