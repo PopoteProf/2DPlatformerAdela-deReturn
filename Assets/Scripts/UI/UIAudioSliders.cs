@@ -24,15 +24,15 @@ public class UIAudioSliders : MonoBehaviour
 
     private void ChangeGenrealValue(float value)
     { 
-       
+       _sliderGeneral.value = value;
     }
     private void ChangeMusicValue(float value) {
-        
+        _sliderMusic.value = value;
     }
     private void ChangeAmbianceValue(float value) {
-        
+        _sliderAmbiance.value = value;
     }
     private void ChangeSfxValue(float value) {
-        
+        _sliderSfx.value = value;
     }
 }
