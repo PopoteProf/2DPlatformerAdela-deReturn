@@ -219,6 +219,7 @@ MonoBehaviour:
   _attackTime: 0.8
   _attackDamageDelay: 0.5
   _damagedFreezTime: 0.25
+  _prfPsDamaged: {fileID: 0}
   _groundMask:
     serializedVersion: 2
     m_Bits: 64
@@ -226,8 +227,8 @@ MonoBehaviour:
   _leftDetector: {fileID: 2050437369396025803}
   _rightDetectot: {fileID: 2050437369270413286}
   _detectionDistance: 0.7
-  _destroyOnDeath: 0
-  _prefabPSDeath: {fileID: 0}
+  _destroyOnDeath: 1
+  _prefabPSDeath: {fileID: 4261103142811683383, guid: 4c64e1ec7c87567489c53ae55d06fa2d, type: 3}
   _diplayDebugGizmos: 0
   _leftTriggerZone: {fileID: 2050437367437838591}
   _rightTriggerZonne: {fileID: 2050437368299358085}
@@ -608,22 +609,3 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::AudioMonsterEffect
   _monster: {fileID: 2050437367659002459}
-  _audioMixerGroup: {fileID: 5956370005326552125, guid: 7d77b744e3c45c8479bac064c548c9a8, type: 2}
-  _attackSound:
-    _minPitch: 1
-    _maxPitch: 1
-    _volume: 0.7
-    _sounds:
-    - {fileID: 8300000, guid: 7731629c744584f4485f376fa0bdfd9f, type: 3}
-  _damagedSound:
-    _minPitch: 1
-    _maxPitch: 1
-    _volume: 0.7
-    _sounds:
-    - {fileID: 8300000, guid: 34b6e2e79c7e4e6409ab4dd2261adb95, type: 3}
-  _DeathSound:
-    _minPitch: 1
-    _maxPitch: 1
-    _volume: 0.7
-    _sounds:
-    - {fileID: 8300000, guid: 57af5a0a8d4cb68408c711f0bc2dd57f, type: 3}

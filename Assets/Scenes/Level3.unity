@@ -17016,6 +17016,37 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
+--- !u!1 &313905473
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 1033617923991052411, guid: 08e2912fea9daee4a8afaa2e4efbcb93, type: 3}
+  m_PrefabInstance: {fileID: 1240225862}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 313905475}
+  m_Layer: 0
+  m_Name: AudioManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &313905475
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 3616357888547115388, guid: 08e2912fea9daee4a8afaa2e4efbcb93, type: 3}
+  m_PrefabInstance: {fileID: 1240225862}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 313905473}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -714.1145, y: 1073.0903, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &331098742
 GameObject:
   m_ObjectHideFlags: 0
@@ -17895,7 +17926,7 @@ Tilemap:
       - {fileID: 1256039217, guid: 82ec6c4d28bc9334983ea277d1ee1c75, type: 3}
       - {fileID: -1256479593, guid: 82ec6c4d28bc9334983ea277d1ee1c75, type: 3}
       - {fileID: -319366289, guid: 82ec6c4d28bc9334983ea277d1ee1c75, type: 3}
-      m_AnimationSpeed: 10
+      m_AnimationSpeed: 10.000001
       m_AnimationTimeOffset: 0
       m_Flags: 0
   - first: {x: 5, y: -3, z: 0}
@@ -18867,7 +18898,7 @@ Tilemap:
       - {fileID: -526095131, guid: 82ec6c4d28bc9334983ea277d1ee1c75, type: 3}
       - {fileID: 771930838, guid: 82ec6c4d28bc9334983ea277d1ee1c75, type: 3}
       - {fileID: 1282866321, guid: 82ec6c4d28bc9334983ea277d1ee1c75, type: 3}
-      m_AnimationSpeed: 10.000001
+      m_AnimationSpeed: 10
       m_AnimationTimeOffset: 0
       m_Flags: 0
   - first: {x: 107, y: 4, z: 0}
@@ -80123,7 +80154,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 0}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
