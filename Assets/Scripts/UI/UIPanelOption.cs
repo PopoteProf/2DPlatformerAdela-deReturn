@@ -25,27 +25,20 @@ public class UIPanelOption : MonoBehaviour
     }
 
     private void SetUpVolumes() {
-        _audioMixer.GetFloat("MasterVolume",out float masterValue);
-        _audioMixer.GetFloat("MusicVolume",out float musicValue);
-        _audioMixer.GetFloat("AmbianceVolume",out float ambianceValue);
-        _audioMixer.GetFloat("SFXVolume",out float sfxValue);
-        _sliderGeneral.value = Mathf.Exp(masterValue / 20);
-        _sliderSFX.value = Mathf.Exp(sfxValue / 20);
-        _sliderMusic.value = Mathf.Exp(musicValue / 20);
-        _sliderAmbiance.value = Mathf.Exp(ambianceValue / 20);
+        
     }
     
     private void ChangeGenrealValue(float value) {
-        _audioMixer.SetFloat("MasterVolume", Mathf.Log10(value) * 20);
+        
     }
     private void ChangeMusicValue(float value) {
-        _audioMixer.SetFloat("MusicVolume", Mathf.Log10(value) * 20);
+        
     }
     private void ChangeAmbianceValue(float value) {
-        _audioMixer.SetFloat("AmbianceVolume", Mathf.Log10(value) * 20);
+        
     }
     private void ChangeSfxValue(float value) {
-        _audioMixer.SetFloat("SFXVolume", Mathf.Log10(value) * 20);
+        
     }
 
     private void ClosePanel() {
