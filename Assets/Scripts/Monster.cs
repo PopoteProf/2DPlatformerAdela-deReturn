@@ -1,5 +1,4 @@
 using System;
-using DG.Tweening;
 using UnityEngine;
 
 [SelectionBase]
@@ -26,6 +25,7 @@ public class Monster : MonoBehaviour , IDamagable {
     
     [Header("Damaged")][SerializeField] 
     private float _damagedFreezTime;
+    [SerializeField] private ParticleSystem _prfPsDamaged;
     [Header("GroundDetection"), Space(5)] 
     [SerializeField] private LayerMask _groundMask;
     [SerializeField] private float _groundDetectionLength = 0.75f;
@@ -139,6 +139,8 @@ public class Monster : MonoBehaviour , IDamagable {
             _timer = 0;
             if (_animator)_animator.SetBool("IsDamaged", false);
         }
+
+        
         CheckIfGrounded();
     }
    
@@ -210,7 +212,19 @@ public class Monster : MonoBehaviour , IDamagable {
         _hp--;
         
         if (_hp <= 0) Death();
-        else OnDamaged?.Invoke(this , EventArgs.Empty);
+        else
+        {
+            if (_prfPsDamaged) {
+                ParticleSystem ps =Instantiate(_prfPsDamaged, transform.position, Quaternion.identity);
+                if (push.x < 0)
+                {
+                    
+                    ps.GetComponent<ParticleSystemRenderer>().flip = new Vector3(1,0,0);
+                    ps.GetComponent<ParticleSystemRenderer>().pivot = new Vector3(-0.5f,0.5f,0);
+                }
+            }
+            OnDamaged?.Invoke(this, EventArgs.Empty);
+        }
         
     }
 
@@ -223,9 +237,9 @@ public class Monster : MonoBehaviour , IDamagable {
         if (_animator)_animator.SetBool("Dead", true);
         if (_animator)_animator.SetBool("IsDamaged", false);
         enabled = false;
+        if (_prefabPSDeath != null) Instantiate(_prefabPSDeath, transform.position, Quaternion.identity);
         if (_destroyOnDeath) {
-            if (_prefabPSDeath != null) Instantiate(_prefabPSDeath, transform.position, Quaternion.identity);
-            DOTween.Sequence().AppendInterval(0.5f).OnComplete(() => Destroy(gameObject));
+           Destroy(gameObject);
         }
         else {
             gameObject.layer = LayerMask.NameToLayer(_deathLayerMask);
