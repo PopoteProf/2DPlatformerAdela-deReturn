@@ -7,7 +7,7 @@ public class UIPlayerHPBar : MonoBehaviour
     [SerializeField] private Image _imgHPBar;
 
     private void Start() {
-        StaticData.OnPlayerHPChange+= StaticDataOnOnPlayerHPChange;
+        StaticData.OnPlayerHPChange += StaticDataOnOnPlayerHPChange;
         _imgHPBar.fillAmount = StaticData.PlayerHP / (float)StaticData.PlayerMaxHP;
     }
 
