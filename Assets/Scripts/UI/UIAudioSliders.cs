@@ -19,27 +19,27 @@ public class UIAudioSliders : MonoBehaviour
         _sliderAmbiance.onValueChanged.AddListener( ChangeAmbianceValue);
         _sliderSfx.onValueChanged.AddListener(ChangeSfxValue);
 
-        _audioMixer.GetFloat("VolumeMaster" ,out float masterVolume);
+        _audioMixer.GetFloat("Master" ,out float masterVolume);
         _sliderGeneral.SetValueWithoutNotify(Mathf.Pow(10, masterVolume/20));
-        _audioMixer.GetFloat("VolumeMusic" ,out float musicVolume);
+        _audioMixer.GetFloat("Music" ,out float musicVolume);
         _sliderMusic.SetValueWithoutNotify(Mathf.Pow(10, musicVolume/20));
-        _audioMixer.GetFloat("VolumeAmbiance" ,out float ambianceVolume);
+        _audioMixer.GetFloat("Ambiance" ,out float ambianceVolume);
         _sliderAmbiance.SetValueWithoutNotify(Mathf.Pow(10, ambianceVolume/20));
-        _audioMixer.GetFloat("VolumeSFX" ,out float sfxVolume);
+        _audioMixer.GetFloat("SFX" ,out float sfxVolume);
         _sliderSfx.SetValueWithoutNotify(Mathf.Pow(10, sfxVolume/20));
     }
 
     private void ChangeGenrealValue(float value)
     { 
-        _audioMixer.SetFloat("VolumeMaster", Mathf.Log10(value) * 20);
+        _audioMixer.SetFloat("Master", Mathf.Log10(value) * 20);
     }
     private void ChangeMusicValue(float value) {
-        _audioMixer.SetFloat("VolumeMusic", Mathf.Log10(value) * 20);
+        _audioMixer.SetFloat("Music", Mathf.Log10(value) * 20);
     }
     private void ChangeAmbianceValue(float value) {
-        _audioMixer.SetFloat("VolumeAmbiance", Mathf.Log10(value) * 20);
+        _audioMixer.SetFloat("Ambiance", Mathf.Log10(value) * 20);
     }
     private void ChangeSfxValue(float value) {
-        _audioMixer.SetFloat("VolumeSFX", Mathf.Log10(value) * 20);
+        _audioMixer.SetFloat("SFX", Mathf.Log10(value) * 20);
     }
 }

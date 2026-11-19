@@ -4,6 +4,12 @@ using UnityEngine.Audio;
 
 public class AudioPlayerExercise : MonoBehaviour {
     
+    [SerializeField] private AudioSource _audioSourceGrounded;
+    [SerializeField] private AudioSource _audioSourceWalking;
+    [SerializeField] private AudioSource _audioSourceAttack;
+    [SerializeField] private AudioSource _audioSourceJumping;
+    [SerializeField] private AudioSource _audioSourceLanding;
+    
     public PlayerController2D _playerController2D;
     
     void Start() {
@@ -15,21 +21,23 @@ public class AudioPlayerExercise : MonoBehaviour {
     }
     
     private void PlayerController2DOnOnIsGrounded(object sender, bool isGRounded) {
+        if( _audioSourceGrounded!=null) _audioSourceGrounded.Play();
     }
 
     private void PlayerController2DOnOnWalking(object sender, bool isWalking) {
+        if( _audioSourceWalking!=null) _audioSourceWalking.Play();
     }
 
     private void PlayerController2DOnOnAttack(object sender, EventArgs e) {
-        
+        if( _audioSourceAttack!=null) _audioSourceAttack.Play();
     }
 
     private void PlayerController2DOnOnJumping(object sender, EventArgs e) {
-       
+        if( _audioSourceJumping!=null) _audioSourceJumping.Play();
     }
 
     private void PlayerController2DOnOnLanding(object sender, EventArgs e) {
-        
+        if( _audioSourceLanding!=null) _audioSourceLanding.Play();
     }
     
 }
