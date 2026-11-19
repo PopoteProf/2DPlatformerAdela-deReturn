@@ -16,6 +16,7 @@ public class PlayerController2D : MonoBehaviour, IDamagable
 
     [Space(5)] 
     [SerializeField] private bool _SpriteIsFlip;
+    [SerializeField] private bool _allowDoubleJump;
     [SerializeField] private LayerMask _groundMask;
     [SerializeField] private float _groundDetectionLength = 0.75f;
     [Space(5)] [SerializeField] private bool _diplayDebugGizmos;
@@ -36,8 +37,13 @@ public class PlayerController2D : MonoBehaviour, IDamagable
     [SerializeField] private ParticleSystem _pSJump;
     [SerializeField] private ParticleSystem _pSLanding;
     [SerializeField] private ParticleSystem _pSHit;
+    [Space(5)]
+    [SerializeField] private TrailRenderer _trailInAir;
+    [SerializeField] private float _inAirTrailTime;
+    [SerializeField] private float _onGroundTrailTime;
     private Interactable _currentInteractable;
     private LaderComponent _currentLaderComponent;
+    private bool _doubleJumpReady;
 
     public event EventHandler OnLanding;
     public event EventHandler OnJumping;
@@ -103,11 +109,13 @@ public class PlayerController2D : MonoBehaviour, IDamagable
     private void CheckIfGrounded() {
         bool isGrounded = Physics2D.Raycast(transform.position, Vector3.down , _groundDetectionLength, _groundMask);
         if (_animator)_animator.SetBool("IsGrounded", isGrounded);
-        if (_isGrounded == false && isGrounded && _pSLanding != null)
+        if (_isGrounded == false && isGrounded )
         {
-            _pSLanding.Play();
+            if(_pSLanding != null)_pSLanding.Play();
+            if (_trailInAir) _trailInAir.time = _onGroundTrailTime;
             OnLanding?.Invoke(this, EventArgs.Empty);
-            
+            _doubleJumpReady = true;
+
         }
         if (_isGrounded == false && isGrounded ) {
             if (Time.time - _inputBuffed <= _inuputBuffTime) {
@@ -161,20 +169,34 @@ public class PlayerController2D : MonoBehaviour, IDamagable
     }
 
     private void CheckForJump() {
-        if (Input.GetKeyDown(KeyCode.UpArrow) && _isGrounded) {
+        if (!Input.GetKeyDown(KeyCode.UpArrow)) return;
+        if ( _isGrounded) {
            Jump();
-        }else if (Input.GetKeyDown(KeyCode.UpArrow) && !_isGrounded) {
-            if (Time.time-_coyoteTimeBuffed   <= _coyoteTime) Jump();
+           
+        }
+        else {
+            if (Time.time-_coyoteTimeBuffed   <= _coyoteTime) {
+                Jump();
+                return;
+            }
             else{_inputBuffed = Time.time;}
+
+            if (_allowDoubleJump && _doubleJumpReady)
+            {
+                print("Do double jump");
+                Jump();
+                _doubleJumpReady = false;
+            }
             //_inputBuffed = Time.time;
         }
-        
+
     }
 
     private void Jump() {
         _velocity = _rigidbody.linearVelocity;
         _velocity.y = _jumpPower;
         if(_pSJump!=null)_pSJump.Play();
+        if (_trailInAir) _trailInAir.time = _inAirTrailTime;
         OnJumping?.Invoke(this, EventArgs.Empty);
         _rigidbody.linearVelocity = _velocity;
     }
